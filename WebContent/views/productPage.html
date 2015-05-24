@@ -1,0 +1,379 @@
+
+<div class="columns-container">
+	<div id="columns" class="container">
+
+		<!-- Breadcrumb -->
+		<div class="breadcrumb clearfix">
+			<a class="home" href="#/block/blockpopular" title="Return to Home"><i
+				class="icon-home"></i></a> <span class="navigation-pipe">&gt;</span> <span
+				class="navigation_page"> <span itemscope
+				itemtype="http://data-vocabulary.org/Breadcrumb"> <a
+					itemprop="url" href="#/category/{{category}}" title="{{category}}">
+						<span itemprop="title">{{category}}</span>
+				</a></span> <span class="navigation-pipe">></span> <span
+				class="navigation-pipe">></span>{{product().productCartDesc}}
+			</span>
+		</div>
+		<!-- /Breadcrumb -->
+
+		<div id="slider_row" class="row">
+			<div id="top_column" class="center_column col-xs-12 col-sm-12"></div>
+		</div>
+		<div class="row">
+			<div id="center_column" class="center_column col-xs-12 col-sm-12">
+
+
+				<div itemscope itemtype="http://schema.org/Product">
+					<div class="primary_block row">
+						<div class="container">
+							<div class="top-hr"></div>
+						</div>
+						<!-- left infos-->
+						<div class="pb-left-column col-xs-12 col-sm-4 col-md-5">
+							<!-- product img-->
+							<div id="image-block" class="clearfix">
+								<span id="view_full_size"> <img id="bigpic"
+									itemprop="image" src="{{product().productThumb}}"
+									title="{{product().productCartDesc}}"
+									alt="{{product().productCartDesc}}" width="458" height="458" />
+								</span>
+							</div>
+							<!-- end image-block -->
+							<!-- thumbnails -->
+							<div id="views_block" class="clearfix "></div>
+							<!-- end views-block -->
+							<!-- end thumbnails -->
+						</div>
+						<!-- end pb-left-column -->
+						<!-- end left infos-->
+						<!-- center infos -->
+						<div class="pb-center-column col-xs-12 col-sm-4">
+							<h1 itemprop="name">{{product().productCartDesc}}</h1>
+							<p id="product_condition">
+								<label>Condition: </label>
+								<link itemprop="itemCondition"
+									href="http://schema.org/NewCondition" />
+								<span class="editable">New product</span>
+							</p>
+							<div id="short_description_block">
+								<div id="short_description_content" class="rte align_justify"
+									itemprop="description">
+									<p>{{product().productLongDesc}}</p>
+								</div>
+
+							</div>
+							<!-- end short_description_block -->
+							<!-- number of item in stock -->
+							<p id="pQuantityAvailable">
+								<span id="quantityAvailable">{{product().productStock}}</span> <span
+									style="display: none;" id="quantityAvailableTxt">Item</span> <span
+									id="quantityAvailableTxtMultiple">Items</span>
+							</p>
+							<!-- availability or doesntExist -->
+							<p id="availability_statut" ng-switch
+								on="product().productStock>0">
+
+								<span class="label label-success" ng-switch-when='true'>In
+									stock</span> <span class="label label-success" ng-switch-when='false'>Out
+									of stock</span>
+							</p>
+
+							<p class="warning_inline" id="last_quantities"
+								style="display: none">Warning: Last items in stock!</p>
+							<p id="availability_date" style="display: none;">
+								<span id="availability_date_label">Availability date:</span> <span
+									id="availability_date_value"></span>
+							</p>
+							<!-- Out of stock hook -->
+							<div id="oosHook" style="display: none;"></div>
+							<p class="socialsharing_product list-inline no-print">
+								<button data-type="twitter" type="button"
+									class="btn btn-default btn-twitter social-sharing">
+									<i class="icon-twitter"></i> Tweet
+									<!-- <img src="http://fo.demo.prestashop.com/modules/socialsharing/img/twitter.gif" alt="Tweet" /> -->
+								</button>
+								<button data-type="facebook" type="button"
+									class="btn btn-default btn-facebook social-sharing">
+									<i class="icon-facebook"></i> Share
+									<!-- <img src="http://fo.demo.prestashop.com/modules/socialsharing/img/facebook.gif" alt="Facebook Like" /> -->
+								</button>
+								<button data-type="google-plus" type="button"
+									class="btn btn-default btn-google-plus social-sharing">
+									<i class="icon-google-plus"></i> Google+
+									<!-- <img src="http://fo.demo.prestashop.com/modules/socialsharing/img/google.gif" alt="Google Plus" /> -->
+								</button>
+								<button data-type="pinterest" type="button"
+									class="btn btn-default btn-pinterest social-sharing">
+									<i class="icon-pinterest"></i> Pinterest
+									<!-- <img src="http://fo.demo.prestashop.com/modules/socialsharing/img/pinterest.gif" alt="Pinterest" /> -->
+								</button>
+							</p>
+
+							<!--  /Module ProductComments -->
+							<!-- usefull links-->
+							<ul id="usefull_link_block" class="clearfix no-print">
+								<li class="sendtofriend"><a id="send_friend_button"
+									href="#send_friend_form"> Send to a friend </a>
+									<div style="display: none;">
+										<div id="send_friend_form">
+											<h2 class="page-subheading">Send to a friend</h2>
+											<div class="row">
+												<div class="product clearfix col-xs-12 col-sm-6">
+													<img
+														src=""
+														height="250" width="250"
+														alt="{{product().productCartDesc}}" />
+													<div class="product_desc">
+														<p class="product_name">
+															<strong>{{product().productCartDesc}}</strong>
+														</p>
+														<p>{{product().productLongDesc}}</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div></li>
+
+
+
+
+
+								<li class="print"><a href="javascript:print();"> Print
+								</a></li>
+							</ul>
+						</div>
+						<!-- end center infos-->
+						<!-- pb-right-column-->
+						<div class="pb-right-column col-xs-12 col-sm-4 col-md-3">
+							<!-- add to cart form-->
+							<!-- hidden datas -->
+							<p class="hidden">
+								<input type="hidden" name="token"
+									value="df14c0d5734e8d5a496be401d2aaeb5e" /> <input
+									type="hidden" name="id_product" value="1"
+									id="product_page_product_id" /> <input type="hidden"
+									name="add" value="1" /> <input type="hidden"
+									name="id_product_attribute" id="idCombination" value="" />
+							</p>
+							<div class="box-info-product">
+								<div class="content_prices clearfix">
+									<!-- prices -->
+									<div>
+										<p class="our_price_display" itemprop="offers" itemscope
+											itemtype="http://schema.org/Offer">
+											<link itemprop="availability"
+												href="http://schema.org/InStock" />
+											<span id="our_price_display" class="price" itemprop="price"><h1>${{product().productPrice}}</h1></span>
+											<meta itemprop="priceCurrency" content="USD" />
+										</p>
+										<p id="reduction_percent" style="display: none;">
+											<span id="reduction_percent_display"></span>
+										</p>
+										<p id="reduction_amount" style="display: none">
+											<span id="reduction_amount_display"></span>
+										</p>
+										<p id="old_price" class="hidden">
+											<span id="old_price_display"></span>
+										</p>
+									</div>
+									<!-- end prices -->
+
+
+									<div class="clear"></div>
+								</div>
+								<!-- end product_attributes -->
+								<div class="box-cart-bottom">
+									<div>
+										<p id="add_to_cart" class="buttons_bottom_block no-print">
+											<button
+												ng-click="cart.addItem(product().productId,product().productCartDesc,product().productPrice,1,product().productThumb,product().productStock)"
+												class="exclusive">
+												<span>Add to cart</span>
+											</button>
+										</p>
+										<p id="add_to_cart" class="buttons_bottom_block no-print">
+											<button
+												ng-click="cart.addItem(product().productId,product().productCartDesc,product().productPrice,-1000,product().productThumb,product().productStock)"
+												class="exclusive">
+												<span>Remove from cart</span>
+											</button>
+										</p>
+									</div>
+									<p class="buttons_bottom_block no-print"></p>
+									<!-- Productpaymentlogos module -->
+									<div id="product_payment_logos"></div>
+									<!-- /Productpaymentlogos module -->
+								</div>
+								<!-- end box-cart-bottom -->
+							</div>
+							<!-- end box-info-product -->
+						</div>
+						<!-- end pb-right-column-->
+					</div>
+					<!-- end primary_block -->
+					<!-- Suggestions -->
+					<section class="page-product-box">
+						<h3 class="page-product-heading" ng-hide="productsCrossList.length==0">Customers who bought this
+							item also bought:</h3>
+						<table>
+							<tr>
+								<div class="content_price" >
+								
+									<div >
+									<span ng-repeat="product in productsCrossList">
+										<a href="#/product/{{product.akProductCategories.categoryName}}/{{product.productId}}" ><img
+											src="{{product.productThumb}}"></img></a> 
+										</span>	
+									</div>
+								</div>
+							</tr>
+						</table>
+						<!-- end -->
+						<!--upsell-->
+						<section class="page-product-box">
+							<h3 class="page-product-heading">You might also consider:</h3>
+							<table>
+								<tr>
+									<div class="content_price" ng-switch on="product().productId ">
+										<div >
+											<span ng-repeat="productup in productsUpList">
+										<a href="#/product/{{productup.akProductCategories.categoryName}}/{{productup.productId}}" ><img
+											src="{{productup.productThumb}}"></img></a> 
+										</span>	
+										</div>
+									</div>
+								</tr>
+							</table>
+							<!-- end -->
+							<!-- Data sheet -->
+							<section class="page-product-box">
+								<h3 class="page-product-heading">Data sheet</h3>
+								<table class="table-data-sheet">
+									<tr class="odd">
+										<td>Compositions</td>
+										<td>Cotton</td>
+									</tr>
+									<tr class="even">
+										<td>Styles</td>
+										<td>Casual</td>
+									</tr>
+									<tr class="odd">
+										<td>Properties</td>
+										<td>Short Sleeve</td>
+									</tr>
+								</table>
+							</section>
+							<!--end Data sheet -->
+							<!-- More info -->
+							<section class="page-product-box">
+								<h3 class="page-product-heading">More info</h3>
+								<!-- full description -->
+								<div class="rte">
+									<p>Fashion has been creating well-designed collections
+										since 2010. The brand offers feminine designs delivering
+										stylish separates and statement dresses which have since
+										evolved into a full ready-to-wear collection in which every
+										item is a vital part of a woman's wardrobe. The result? Cool,
+										easy, chic looks with youthful elegance and unmistakable
+										signature style. All the beautiful pieces are made in Italy
+										and manufactured with the greatest attention. Now Fashion
+										extends to a range of accessories including shoes, hats, belts
+										and more!</p>
+								</div>
+							</section>
+							<!--end  More info -->
+							<!--HOOK_PRODUCT_TAB -->
+							<section class="page-product-box">
+
+								<h3 id="#idTab5" class="idTabHrefShort page-product-heading">Reviews</h3>
+								<div id="idTab5">
+									<div id="product_comments_block_tab">
+										<p class="align_center">No customer reviews for the
+											moment.</p>
+									</div>
+									<!-- #product_comments_block_tab -->
+								</div>
+
+								<!-- Fancybox -->
+								<div style="display: none;">
+									<div id="new_comment_form">
+										<form id="id_new_comment_form" action="#">
+											<h2 class="page-subheading">Write a review</h2>
+											<div class="row">
+												<div class="product clearfix  col-xs-12 col-sm-6">
+													<img
+														src=""
+														height="125" width="125"
+														alt="{{product().productCartDesc}}" />
+													<div class="product_desc">
+														<p class="product_name">
+															<strong>{{product().productCartDesc}}</strong>
+														</p>
+														<p>Faded short sleeves t-shirt with high neckline.
+															Soft and stretchy material for a comfortable fit.
+															Accessorize with a straw hat and you're ready for summer!</p>
+													</div>
+												</div>
+												<div class="new_comment_form_content col-xs-12 col-sm-6">
+													<div id="new_comment_form_error" class="error"
+														style="display: none; padding: 15px 25px">
+														<ul></ul>
+													</div>
+													<ul id="criterions_list">
+														<li><label>Quality:</label>
+															<div class="star_content">
+																<input class="star" type="radio" name="criterion[1]"
+																	value="1" /> <input class="star" type="radio"
+																	name="criterion[1]" value="2" /> <input class="star"
+																	type="radio" name="criterion[1]" value="3"
+																	checked="checked" /> <input class="star" type="radio"
+																	name="criterion[1]" value="4" /> <input class="star"
+																	type="radio" name="criterion[1]" value="5" />
+															</div>
+															<div class="clearfix"></div></li>
+													</ul>
+													<label for="comment_title"> Title: <sup
+														class="required">*</sup>
+													</label> <input id="comment_title" name="title" type="text"
+														value="" /> <label for="content"> Comment: <sup
+														class="required">*</sup>
+													</label>
+													<textarea id="content" name="content"></textarea>
+													<div id="new_comment_form_footer">
+														<input id="id_product_comment_send" name="id_product"
+															type="hidden" value='1' />
+														<p class="fl required">
+															<sup>*</sup> Required fields
+														</p>
+														<p class="fr">
+															<button id="submitNewMessage" name="submitMessage"
+																type="submit" class="btn button button-small">
+																<span>Submit</span>
+															</button>
+															&nbsp; or&nbsp; <a class="closefb" href="#"> Cancel </a>
+														</p>
+														<div class="clearfix"></div>
+													</div>
+													<!-- #new_comment_form_footer -->
+												</div>
+											</div>
+										</form>
+										<!-- /end new_comment_form_content -->
+									</div>
+								</div>
+								<!-- End fancybox -->
+
+							</section>
+							<!--end HOOK_PRODUCT_TAB -->
+							<!-- description & features -->
+				</div>
+				<!-- itemscope product wrapper -->
+
+			</div>
+			<!-- #center_column -->
+		</div>
+		<!-- .row -->
+	</div>
+	<!-- #columns -->
+</div>
+<!-- .columns-container -->

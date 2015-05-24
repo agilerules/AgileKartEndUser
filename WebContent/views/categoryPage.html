@@ -1,0 +1,203 @@
+<div id="columns" class="container">
+
+	<!-- Breadcrumb -->
+	<div class="breadcrumb clearfix">
+		<a class="home" href="#/block/blockpopular"
+			title="Return to Home"><i class="icon-home"></i></a> <span
+			class="navigation-pipe">&gt;</span> {{routeCategory}}
+	</div>
+	<!-- /Breadcrumb -->
+
+	<div id="slider_row" class="row">
+		<div id="top_column" class="center_column col-xs-12 col-sm-12"></div>
+	</div>
+	<div class="row">
+		<div id="left_column" class="column col-xs-12 col-sm-3">
+			<!-- Block layered navigation module -->
+			<div id="layered_block_left" class="block">
+				<p class="title_block">Catalog</p>
+				<div class="block_content">
+					<div>
+							<div class="layered_filter"  ng-repeat="optionGroups in optionsGroupsList">
+							<div class="layered_subtitle_heading">
+								<span class="layered_subtitle">{{optionGroups.optionGroupName}}</span>
+							</div>
+							<ul class="col-lg-12 layered_filter_ul">
+								<li class="nomargin hiddable col-lg-12"  ng-repeat="options in optionsList(optionGroups.optionGroupId) track by options.optionId"><input
+									type="checkbox" class="checkbox" 
+												ng-model="flag"
+									 					ng-change='productIdList(optionGroups.optionGroupId,options.optionId,flag)' /> 
+									 					<label> <a href="#" data-rel="nofollow">{{options.optionName}}</a>
+								</label></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Block layered navigation module -->
+
+
+			<!-- Block CMS module -->
+			<section id="informations_block_left_1"
+				class="block informations_block_left">
+				<p class="title_block">
+				<!--	<a href="http://fo.demo.prestashop.com/en/content/category/1-home">  -->
+						<a> Information </a>
+				</p>
+				<div class="block_content list-block">
+					<ul>
+						<li><a
+							href="#"
+							title="Delivery"> Delivery </a></li>
+						<li><a
+							href="#"
+							title="Legal Notice"> Legal Notice </a></li>
+						<li><a
+							href="#"
+							title="Terms and conditions of use"> Terms and conditions of
+								use </a></li>
+						<li><a
+							href="#"
+							title="About us"> About us </a></li>
+						<li><a
+							href="#"
+							title="Secure payment"> Secure payment </a></li>
+						<li><a href="#"
+							title="Our stores"> Our stores </a></li>
+					</ul>
+				</div>
+			</section>
+
+		</div>
+		<div id="center_column" class="center_column col-xs-12 col-sm-9">
+
+			<h1 class="page-heading product-listing">
+				<span class="cat-name">{{routeCategory}}&nbsp;</span><span
+					class="heading-counter">There are {{noOfProducts}} products.</span>
+			</h1>
+			<div class="content_sortPagiBar clearfix">
+				<div class="sortPagiBar clearfix">
+					<ul class="display hidden-xs">
+						<li class="display-title">View:</li>
+						<li id="grid"><a rel="nofollow" href="#" title="Grid"><i
+								class="icon-th-large"></i>Grid</a></li>
+						<li id="list"><a rel="nofollow" href="#" title="List"><i
+								class="icon-th-list"></i>List</a></li>
+					</ul>
+
+					<form id="productsSortForm"
+						action=""
+						class="productsSortForm">
+						<div class="select selector1">
+							<label for="selectProductSort">Sort by</label> <select
+								id="selectProductSort" class="selectProductSort form-control">
+								<option value="position:asc" selected="selected">--</option>
+								<option value="price:asc">Price: Lowest first</option>
+								<option value="price:desc">Price: Highest first</option>
+								<option value="name:asc">Product Name: A to Z</option>
+								<option value="name:desc">Product Name: Z to A</option>
+								<option value="quantity:desc">In stock</option>
+								<option value="reference:asc">Reference: Lowest first</option>
+								<option value="reference:desc">Reference: Highest first</option>
+							</select>
+						</div>
+					</form>
+					<!-- /Sort products -->
+
+
+					<!-- nbr product/page -->
+					<!-- /nbr product/page -->
+
+				</div>
+				<div class="top-pagination-content clearfix" ng-switch on="noOfProducts>0">
+
+					<!-- Pagination -->
+					<div id="pagination" class="pagination clearfix" ></div>
+					<div class="product-count" ng-switch-when='false'>No items found</div>
+					<div class="product-count" ng-switch-when='true'>Showing 1 - {{noOfProducts}} of {{noOfProducts}} items</div>
+					<!-- /Pagination -->
+
+				</div>
+			</div>
+
+
+
+
+			<!-- Products list -->
+			<ul class="product_list grid row">
+
+				<li ng-repeat="product in productList()" 
+					class="ajax_block_product col-xs-12 col-sm-6 col-md-4 {{csspopular[$index].css1}} {{csspopular[$index].css2}} {{csspopular[$index].css3}}">
+					<div class="product-container" ">
+						<div class="left-block">
+							<div class="product-image-container">
+								<a class="product_img_link"
+									href="#/product/{{product.akProductCategories.categoryName}}/{{product.productId}}"
+									title="{{product.productCartDesc}}" itemprop="url"> <img
+									class="replace-2x img-responsive"
+									ng-src="{{product.productThumb}}"
+									alt="{{product.productCartDesc}}"
+									title="{{product.productCartDesc}}" width="250" height="250"
+									itemprop="image" />
+								</a>
+								<div class="quick-view-wrapper-mobile">
+									<a class="quick-view-mobile"
+										href="#"
+										rel="#">
+										<i class="icon-eye-open"></i>
+									</a>
+								</div>
+							</div>
+
+
+						</div>
+						<div class="right-block">
+							<h5 itemprop="name">
+								<a class="product-name"
+									href="#/product/{{product.akProductCategories.categoryName}}/{{product.productId}}"
+									title="Faded Short Sleeves T-shirt" itemprop="url"> {{product.productCartDesc}} </a>
+							</h5>
+							<div class="content_price">
+								<span class="price product-price"> ${{product.productPrice}} </span>
+
+
+							</div>
+							<div class="button-container">
+								<a class="button ajax_add_to_cart_button btn btn-default"
+									rel="nofollow" title="Add to cart" data-id-product="1"
+									data-minimal_quantity="1" 
+									ng-click="cart.addItem(product.productId,product.productCartDesc,product.productPrice,1,product.productThumb,product.productStock)"> <span>Add to cart</span>
+								</a> <a class="button lnk_view btn btn-default"
+									href="#/product/{{product.akProductCategories.categoryName}}/{{product.productId}}"
+									title="View"> <span>More</span>
+								</a>
+							</div>
+						</div>
+					</div> <!-- .product-container> -->
+				</li>
+
+			</ul>
+
+
+
+
+
+			<div class="content_sortPagiBar">
+				<div class="bottom-pagination-content clearfix" ng-switch on="noOfProducts>0">
+
+
+
+					<!-- Pagination -->
+					<div id="pagination_bottom" class="pagination clearfix"></div>
+					<div class="product-count" ng-switch-when='false'>No items found</div>
+					<div class="product-count" ng-switch-when='true'>Showing 1 - {{noOfProducts}} of {{noOfProducts}} items</div>
+					<!-- /Pagination -->
+
+				</div>
+			</div>
+		</div>
+		<!-- #center_column -->
+	</div>
+	<!-- .row -->
+</div>
+<!-- #columns -->

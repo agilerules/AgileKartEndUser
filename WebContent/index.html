@@ -1,0 +1,876 @@
+<html lang="en-us" ng-app="enduser">
+<head>
+<meta charset="utf-8">
+<title>AgileKart</title>
+<meta name="description" content="Shop powered by AgileKart">
+<meta name="generator" content="AgileKart">
+<meta name="robots" content="index,follow">
+<meta name="viewport"
+	content="width=device-width, minimum-scale=0.25, maximum-scale=1.6, initial-scale=1.0">
+<link rel="stylesheet"
+	href="themes/default-bootstrap/css/global.css" type="text/css"
+	media="all">
+<link rel="stylesheet" href="styles/agile.css" type="text/css"
+	media="all">
+<link rel="stylesheet"
+	href="themes/default-bootstrap/css/autoload/highdpi.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="themes/default-bootstrap/css/autoload/responsive-tables.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="themes/default-bootstrap/css/autoload/uniform.default.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="js/jquery/plugins/fancybox/jquery.fancybox.css" type="text/css"
+	media="all">
+<link rel="stylesheet"
+	href="themes/default-bootstrap/css/modules/blockbanner/blockbanner.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="themes/default-bootstrap/css/product_list.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="themes/default-bootstrap/css/modules/blockbestsellers/blockbestsellers.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="themes/default-bootstrap/css/modules/blockcart/blockcart.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="js/jquery/plugins/bxslider/jquery.bxslider.css" type="text/css"
+	media="all">
+<link rel="stylesheet"
+	href="themes/default-bootstrap/css/modules/blockcategories/blockcategories.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="themes/default-bootstrap/css/modules/blockcurrencies/blockcurrencies.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="modules/blockfacebook/css/blockfacebook.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="themes/default-bootstrap/css/modules/blocklanguages/blocklanguages.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="themes/default-bootstrap/css/modules/blockcontact/blockcontact.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="themes/default-bootstrap/css/modules/blockmyaccountfooter/blockmyaccount.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="themes/default-bootstrap/css/modules/blocknewproducts/blocknewproducts.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="themes/default-bootstrap/css/modules/blocknewsletter/blocknewsletter.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="themes/default-bootstrap/css/modules/blocksearch/blocksearch.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="js/jquery/plugins/autocomplete/jquery.autocomplete.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="themes/default-bootstrap/css/modules/blocktags/blocktags.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="themes/default-bootstrap/css/modules/blocktopmenu/css/superfish-modified.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="themes/default-bootstrap/css/modules/blockuserinfo/blockuserinfo.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="themes/default-bootstrap/css/modules/blockviewed/blockviewed.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="themes/default-bootstrap/css/modules/homeslider/homeslider.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="themes/default-bootstrap/css/modules/homefeatured/homefeatured.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="themes/default-bootstrap/css/modules/blockwishlist/blockwishlist.css"
+	type="text/css" media="all">
+<link rel="stylesheet"
+	href="themes/default-bootstrap/css/modules/productcomments/productcomments.css"
+	type="text/css" media="all">
+
+<link
+	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css" media="all">
+
+
+<script src="scripts/vendor/jquery-2.0.3.js"></script>
+<script src="scripts/vendor/angular.js"></script>
+<script src="scripts/vendor/angular-route.js"></script>
+<script src="scripts/vendor/angular-resource.js"></script>
+
+<script src="scripts/end_user.js"></script>
+<script src="scripts/controllers/mainheaderCtrl.js"></script>
+<script src="scripts/controllers/categoryCtrl.js"></script>
+<script src="scripts/controllers/productCtrl.js"></script>
+<script src="scripts/controllers/popularCtrl.js"></script>
+<script src="scripts/logic/agileShoppingCart.js"></script>
+<script src="scripts/services/locationParser.js"></script>
+<script src="scripts/services/AkOptionGroupsFactory.js"></script>
+<script src="scripts/services/AkOptionsFactory.js"></script>
+<script src="scripts/services/AkOrderDetailsFactory.js"></script>
+<script src="scripts/services/AkOrdersFactory.js"></script>
+<script src="scripts/services/AkProductCategoriesFactory.js"></script>
+<script src="scripts/services/AkProductOptionsFactory.js"></script>
+<script src="scripts/services/AkProductsFactory.js"></script>
+<script src="scripts/services/AkUsersFactory.js"></script>
+<!-- Scripts library ends -->
+
+
+<link rel="stylesheet"
+	href="http://fonts.googleapis.com/css?family=Open+Sans:300,600&amp;subset=latin,latin-ext"
+	type="text/css" media="all">
+<style type="text/css">
+.fancybox-margin {
+	margin-right: 17px;
+}
+</style>
+<style type="text/css">
+.fb_hidden {
+	position: absolute;
+	top: -10000px;
+	z-index: 10001
+}
+
+.fb_invisible {
+	display: none
+}
+
+.fb_reset {
+	background: none;
+	border: 0;
+	border-spacing: 0;
+	color: #000;
+	cursor: auto;
+	direction: ltr;
+	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+	font-size: 11px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	letter-spacing: normal;
+	line-height: 1;
+	margin: 0;
+	overflow: visible;
+	padding: 0;
+	text-align: left;
+	text-decoration: none;
+	text-indent: 0;
+	text-shadow: none;
+	text-transform: none;
+	visibility: visible;
+	white-space: normal;
+	word-spacing: normal
+}
+
+.fb_reset>div {
+	overflow: hidden
+}
+
+.fb_link img {
+	border: none
+}
+
+.fb_dialog {
+	background: rgba(82, 82, 82, .7);
+	position: absolute;
+	top: -10000px;
+	z-index: 10001
+}
+
+.fb_reset .fb_dialog_legacy {
+	overflow: visible
+}
+
+.fb_dialog_advanced {
+	padding: 10px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px
+}
+
+.fb_dialog_content {
+	background: #fff;
+	color: #333
+}
+
+.fb_dialog_close_icon {
+	background:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png)
+		no-repeat scroll 0 0 transparent;
+	_background-image:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);
+	cursor: pointer;
+	display: block;
+	height: 15px;
+	position: absolute;
+	right: 18px;
+	top: 17px;
+	width: 15px
+}
+
+.fb_dialog_mobile .fb_dialog_close_icon {
+	top: 5px;
+	left: 5px;
+	right: auto
+}
+
+.fb_dialog_padding {
+	background-color: transparent;
+	position: absolute;
+	width: 1px;
+	z-index: -1
+}
+
+.fb_dialog_close_icon:hover {
+	background:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png)
+		no-repeat scroll 0 -15px transparent;
+	_background-image:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)
+}
+
+.fb_dialog_close_icon:active {
+	background:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png)
+		no-repeat scroll 0 -30px transparent;
+	_background-image:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)
+}
+
+.fb_dialog_loader {
+	background-color: #f6f7f8;
+	border: 1px solid #606060;
+	font-size: 24px;
+	padding: 20px
+}
+
+.fb_dialog_top_left, .fb_dialog_top_right, .fb_dialog_bottom_left,
+	.fb_dialog_bottom_right {
+	height: 10px;
+	width: 10px;
+	overflow: hidden;
+	position: absolute
+}
+
+.fb_dialog_top_left {
+	background:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png)
+		no-repeat 0 0;
+	left: -10px;
+	top: -10px
+}
+
+.fb_dialog_top_right {
+	background:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png)
+		no-repeat 0 -10px;
+	right: -10px;
+	top: -10px
+}
+
+.fb_dialog_bottom_left {
+	background:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png)
+		no-repeat 0 -20px;
+	bottom: -10px;
+	left: -10px
+}
+
+.fb_dialog_bottom_right {
+	background:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png)
+		no-repeat 0 -30px;
+	right: -10px;
+	bottom: -10px
+}
+
+.fb_dialog_vert_left, .fb_dialog_vert_right, .fb_dialog_horiz_top,
+	.fb_dialog_horiz_bottom {
+	position: absolute;
+	background: #525252;
+	filter: alpha(opacity = 70);
+	opacity: .7
+}
+
+.fb_dialog_vert_left, .fb_dialog_vert_right {
+	width: 10px;
+	height: 100%
+}
+
+.fb_dialog_vert_left {
+	margin-left: -10px
+}
+
+.fb_dialog_vert_right {
+	right: 0;
+	margin-right: -10px
+}
+
+.fb_dialog_horiz_top, .fb_dialog_horiz_bottom {
+	width: 100%;
+	height: 10px
+}
+
+.fb_dialog_horiz_top {
+	margin-top: -10px
+}
+
+.fb_dialog_horiz_bottom {
+	bottom: 0;
+	margin-bottom: -10px
+}
+
+.fb_dialog_iframe {
+	line-height: 0
+}
+
+.fb_dialog_content .dialog_title {
+	background: #6d84b4;
+	border: 1px solid #3a5795;
+	color: #fff;
+	font-size: 14px;
+	font-weight: bold;
+	margin: 0
+}
+
+.fb_dialog_content .dialog_title>span {
+	background:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif)
+		no-repeat 5px 50%;
+	float: left;
+	padding: 5px 0 7px 26px
+}
+
+body.fb_hidden {
+	-webkit-transform: none;
+	height: 100%;
+	margin: 0;
+	overflow: visible;
+	position: absolute;
+	top: -10000px;
+	left: 0;
+	width: 100%
+}
+
+.fb_dialog.fb_dialog_mobile.loading {
+	background:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white
+		no-repeat 50% 50%;
+	min-height: 100%;
+	min-width: 100%;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	z-index: 10001
+}
+
+.fb_dialog.fb_dialog_mobile.loading.centered {
+	max-height: 590px;
+	min-height: 590px;
+	max-width: 500px;
+	min-width: 500px
+}
+
+#fb-root #fb_dialog_ipad_overlay {
+	background: rgba(0, 0, 0, .45);
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	min-height: 100%;
+	z-index: 10000
+}
+
+#fb-root #fb_dialog_ipad_overlay.hidden {
+	display: none
+}
+
+.fb_dialog.fb_dialog_mobile.loading iframe {
+	visibility: hidden
+}
+
+.fb_dialog_content .dialog_header {
+	-webkit-box-shadow: white 0 1px 1px -1px inset;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA),
+		to(#2C4987));
+	border-bottom: 1px solid;
+	border-color: #1d4088;
+	color: #fff;
+	font: 14px Helvetica, sans-serif;
+	font-weight: bold;
+	text-overflow: ellipsis;
+	text-shadow: rgba(0, 30, 84, .296875) 0 -1px 0;
+	vertical-align: middle;
+	white-space: nowrap
+}
+
+.fb_dialog_content .dialog_header table {
+	-webkit-font-smoothing: subpixel-antialiased;
+	height: 43px;
+	width: 100%
+}
+
+.fb_dialog_content .dialog_header td.header_left {
+	font-size: 12px;
+	padding-left: 5px;
+	vertical-align: middle;
+	width: 60px
+}
+
+.fb_dialog_content .dialog_header td.header_right {
+	font-size: 12px;
+	padding-right: 5px;
+	vertical-align: middle;
+	width: 60px
+}
+
+.fb_dialog_content .touchable_button {
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6),
+		color-stop(.5, #355492), to(#2A4887));
+	border: 1px solid #2f477a;
+	-webkit-background-clip: padding-box;
+	-webkit-border-radius: 3px;
+	-webkit-box-shadow: rgba(0, 0, 0, .117188) 0 1px 1px inset,
+		rgba(255, 255, 255, .167969) 0 1px 0;
+	display: inline-block;
+	margin-top: 3px;
+	max-width: 85px;
+	line-height: 18px;
+	padding: 4px 12px;
+	position: relative
+}
+
+.fb_dialog_content .dialog_header .touchable_button input {
+	border: none;
+	background: none;
+	color: #fff;
+	font: 12px Helvetica, sans-serif;
+	font-weight: bold;
+	margin: 2px -12px;
+	padding: 2px 6px 3px 6px;
+	text-shadow: rgba(0, 30, 84, .296875) 0 -1px 0
+}
+
+.fb_dialog_content .dialog_header .header_center {
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 18px;
+	text-align: center;
+	vertical-align: middle
+}
+
+.fb_dialog_content .dialog_content {
+	background:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif)
+		no-repeat 50% 50%;
+	border: 1px solid #555;
+	border-bottom: 0;
+	border-top: 0;
+	height: 150px
+}
+
+.fb_dialog_content .dialog_footer {
+	background: #f6f7f8;
+	border: 1px solid #555;
+	border-top-color: #ccc;
+	height: 40px
+}
+
+#fb_dialog_loader_close {
+	float: left
+}
+
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_button {
+	text-shadow: rgba(0, 30, 84, .296875) 0 -1px 0
+}
+
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon {
+	visibility: hidden
+}
+
+.fb_iframe_widget {
+	display: inline-block;
+	position: relative
+}
+
+.fb_iframe_widget span {
+	display: inline-block;
+	position: relative;
+	text-align: justify
+}
+
+.fb_iframe_widget iframe {
+	position: absolute
+}
+
+.fb_iframe_widget_fluid_desktop, .fb_iframe_widget_fluid_desktop span,
+	.fb_iframe_widget_fluid_desktop iframe {
+	max-width: 100%
+}
+
+.fb_iframe_widget_fluid_desktop iframe {
+	min-width: 220px;
+	position: relative
+}
+
+.fb_iframe_widget_lift {
+	z-index: 1
+}
+
+.fb_hide_iframes iframe {
+	position: relative;
+	left: -10000px
+}
+
+.fb_iframe_widget_loader {
+	position: relative;
+	display: inline-block
+}
+
+.fb_iframe_widget_fluid {
+	display: inline
+}
+
+.fb_iframe_widget_fluid span {
+	width: 100%
+}
+
+.fb_iframe_widget_loader iframe {
+	min-height: 32px;
+	z-index: 2;
+	zoom: 1
+}
+
+.fb_iframe_widget_loader .FB_Loader {
+	background:
+		url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif)
+		no-repeat;
+	height: 32px;
+	width: 32px;
+	margin-left: -16px;
+	position: absolute;
+	left: 50%;
+	z-index: 4
+}
+</style>
+
+</head>
+<body id="index"
+	class="index hide-left-column hide-right-column lang_en">
+	<div id="page">
+		<div class="header-container">
+			<header id="header" ng-controller="MainHeader">
+				<div class="banner">
+					<div class="container">
+						<div class="row">
+							<a href="#" title=""> <img class="img-responsive"
+								src="modules/blockbanner/img/sale70.png" alt=""
+								title="" width="1170" height="65">
+							</a> <img src="img/powered-by-redhat.gif"
+								style="width: 100px; margin-top: -60px; margin-left: 1069px; height: 47px;">
+
+						</div>
+					</div>
+				</div>
+				<div class="nav">
+					<div class="container">
+						<div class="row">
+							<nav>
+								<!-- Block user information module NAV  -->
+								<div class="header_user_info">
+									<a class="login">
+										<!--	href="http://fo.demo.prestashop.com/en/my-account"--> <!-- 	rel="nofollow" title="Log in to your customer account"> -->
+										Sign in
+									</a>
+								</div>
+								<!-- /Block usmodule NAV -->
+								<!-- Block languages module -->
+								<div id="languages-block-top" class="languages-block">
+									<div class="current">
+										<span>English</span>
+									</div>
+									<ul id="first-languages"
+										class="languages-block_ul toogle_content">
+										<li class="selected"><span>English</span></li>
+										<!--  <li><a href="http://fo.demo.prestashop.com/es/"
+											title="Espa�ol (Spanish)"> <span>Espa�ol</span>
+										</a></li>
+										<li><a href="http://fo.demo.prestashop.com/fr/"
+											title="Fran�ais (French)"> <span>Fran�ais</span>
+										</a></li> 
+										<li><a href="http://fo.demo.prestashop.com/it/"
+											title="Italiano (Italian)"> <span>Italiano</span>
+										</a></li>
+										<li><a href="http://fo.demo.prestashop.com/de/"
+											title="Deutsch (German)"> <span>Deutsch</span>
+										</a></li>
+										<li><a href="http://fo.demo.prestashop.com/nl/"
+											title="Nederlands (Dutch)"> <span>Nederlands</span>
+										</a></li>
+										<li><a href="http://fo.demo.prestashop.com/pl/"
+											title="Polski (Polish)"> <span>Polski</span>
+										</a></li>
+										<li><a href="http://fo.demo.prestashop.com/ru/"
+											title="??????? (Russian)"> <span>???????</span>
+										</a></li>
+										<li><a href="http://fo.demo.prestashop.com/pt/"
+											title="Portugu�s PT (Portuguese)"> <span>Portugu�s
+													PT</span>
+										</a></li>-->
+									</ul>
+								</div>
+								<!-- /Block languages module -->
+								<div id="contact-link">
+									<!--  		<a href="http://fo.demo.prestashop.com/en/contact-us" -->
+									<a title="Contact us">Contact us</a>
+								</div>
+								<span class="shop-phone"> <i class="icon-phone"></i>Call
+									us now: <strong>0123-456-789</strong>
+								</span>
+							</nav>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="container">
+						<div class="row">
+							<div id="header_logo">
+								<a href="#AgileRulesKart" title="Agilekart"> <img
+									class="logo img-responsive" src="img/logo.jpg"
+									alt="PrestaShop" width="350" height="99">
+								</a>
+							</div>
+							<!-- Block search module TOP -->
+							<div id="search_block_top" class="col-sm-4 clearfix">
+								<form id="searchbox" method="get" action="">
+									<input type="hidden" name="orderby" value="position"> <input
+										class="search_query form-control ac_input" type="text"
+										id="search_query_top" name="search_query" placeholder="Search"
+										value="" autocomplete="off">
+									<button type="submit" name="submit_search"
+										class="btn btn-default button-search">
+										<span>Search</span>
+									</button>
+								</form>
+							</div>
+							<!-- /Block search module TOP -->
+							<!-- MODULE Block cart -->
+							<div class="col-sm-4 clearfix">
+								<div class="shopping_cart">
+									<a href="#/summary" title="View my shopping cart"
+										rel="nofollow" ng-disabled="cart.getTotalCount() < 1"> <b>Cart</b>
+										<span class="ajax_cart_quantity">{{cart.getTotalCount()}}</span>
+										<span class="ajax_cart_product_txt">Product -
+											{{cart.getTotalPrice() | currency}}</span> <span
+										class="ajax_cart_product_txt_s unvisible">Products</span> <span
+										class="ajax_cart_total">{{cart.getTotalPrice() |
+											currency}} </span> <span class="ajax_cart_no_product unvisible">(empty)</span>
+									</a>
+
+								</div>
+							</div>
+
+							<div id="layer_cart">
+
+								<div class="crossseling"></div>
+							</div>
+							<!-- #layer_cart -->
+							<div class="layer_cart_overlay"></div>
+
+							<!-- /MODULE Block cart -->
+							<!-- Menu -->
+							<div id="block_top_menu " class="sf-contener clearfix col-lg-12">
+								<ul ng-repeat="productCategory in headerCategories"
+									class="sf-menu sf-js-enabled sf-arrows">
+									<li><a href="#/category/{{productCategory.categoryName}}"
+										title="{{productCategory.categoryName}}" class="sf-menu">{{productCategory.categoryName}}</a></li>
+								</ul>
+							</div>
+							<!--/ Menu -->
+						</div>
+					</div>
+				</div>
+			</header>
+		</div>
+
+		<div class="columns-container" ng-view></div>
+
+
+		<!-- .columns-container -->
+		<!-- Footer -->
+		<div class="footer-container">
+			<footer id="footer" class="container">
+				<div class="row">
+					<!-- Block Newsletter module-->
+					<div id="newsletter_block_left" class="block">
+						<h4>Newsletter</h4>
+						<div class="block_content">
+							<!--<form action="//fo.demo.prestashop.com/en/" method="post"> -->
+							<div class="form-group">
+								<input class="inputNew form-control grey newsletter-input"
+									id="newsletter-input" type="text" name="email" size="18"
+									value="Enter your e-mail">
+								<button type="submit" name="submitNewsletter"
+									class="btn btn-default button button-small">
+									<span>Ok</span>
+								</button>
+								<input type="hidden" name="action" value="0">
+							</div>
+							</form>
+						</div>
+					</div>
+					<!-- /Block Newsletter module-->
+					<section id="social_block" class="pull-right">
+						<ul>
+							<li class="facebook"><a class="_blank"
+								href="http://www.facebook.com/agilerules" target="_blank"> <span>Facebook</span>
+							</a></li>
+							<li class="twitter"><a class="_blank"
+								href="http://www.twitter.com/agilerules target="_blank"> <span>Twitter</span>
+							</a></li>
+							<li class="rss"><a class="_blank">
+									<!-- href="#blog/en/" 
+								target="_blank">--> <span>RSS</span>
+							</a></li>
+							<li class="google-plus"><a class="_blank"
+								href="https://plus.google.com/101946403664459016015"
+								target="_blank"> <span>Google Plus</span>
+							</a></li>
+						</ul>
+						<h4>Follow us</h4>
+					</section>
+					<div class="clearfix"></div>
+					<!-- Block categories module -->
+					<section
+						class="blockcategories_footer footer-block col-xs-12 col-sm-2">
+						<h4>Categories</h4>
+						<div class="category_footer toggle-footer" style="">
+							<div class="list">
+								<ul class="tree dynamized" style="display: block;">
+									<li class="item"><span class="grower CLOSE"> </span>
+										<a href="#"
+										title="You will find here all women and men fashion collections.  
+ This category includes all the basics of your T-shirt needs!">
+											T-Shirts </a> </li>
+										
+											<li class="item"><span class="grower CLOSE"> </span><a
+												href="#"
+												title="Choose from various watches that suit you the best!">
+													Watches </a>
+												<ul style="display: none;">
+												</ul></li>
+										</ul>
+							</div>
+						</div>
+						<!-- .category_footer -->
+					</section>
+					<!-- /Block categories module -->
+					<!-- MODULE Block footer -->
+					<section class="footer-block col-xs-12 col-sm-2"
+						id="block_various_links_footer">
+						<h4>Information</h4>
+						<ul class="toggle-footer" style="">
+							<li class="item">
+								<!-- href="http://fo.demo.prestashop.com/en/prices-drop"  --> <a
+								title="Specials"> Specials </a>
+							</li>
+							<li class="item">
+								<!--<a href="http://fo.demo.prestashop.com/en/new-products"--> <a
+								title="New products"> New products </a>
+							</li>
+							<li class="item">
+								<!--<a	href="http://fo.demo.prestashop.com/en/best-sales" --> <a
+								title="Best sellers"> Best sellers </a>
+							</li>
+							<li class="item">
+								<!--<a	href="http://fo.demo.prestashop.com/en/stores" --> <a
+								title="Our stores">Our stores </a>
+							</li>
+							<li class="item">
+								<!--<a	href="http://fo.demo.prestashop.com/en/contact-us"--> <a
+								title="Contact us"> Contact us </a>
+							</li>
+							<li class="item">
+								<!--<a	href="http://fo.demo.prestashop.com/en/content/3-terms-and-conditions-of-use"-->
+								<a title="Terms and conditions of use"> Terms and conditions
+									of use </a>
+							</li>
+							<li class="item">
+								<!--<a	href="http://fo.demo.prestashop.com/en/content/4-about-us"-->
+								<a title="About us">About us </a>
+							</li>
+							<!--<li><a href="http://fo.demo.prestashop.com/en/sitemap"-->
+							<a title="Sitemap"> Sitemap </a>
+							</li>
+						</ul>
+
+					</section>
+					<section class="bottom-footer col-xs-12">
+						<div>
+							2015 <a class="_blank" href="http://www.agilerule.com"
+								target="_blank">Ecommerce software by AgileRules</a>
+						</div>
+					</section>
+					<!-- /MODULE Block footer -->
+					<!-- Block myaccount module -->
+					<section class="footer-block col-xs-12 col-sm-4">
+						<h4>
+							<!-- 	<a href="http://fo.demo.prestashop.com/en/my-account"
+								title="Manage my customer account" rel="nofollow">-->
+							My account</a>
+						</h4>
+						<div class="block_content toggle-footer" style="">
+							<ul class="bullet">
+								<li><a><!--href="http://fo.demo.prestashop.com/en/order-history"
+									title="My orders" rel="nofollow"--> My orders 
+								</a></li>
+								<li><a>
+										<!-- href="http://fo.demo.prestashop.com/en/credit-slip"
+									title="My credit slips" rel="nofollow">-->My credit slips
+								</a></li>
+								<li><a>
+										<!--href="http://fo.demo.prestashop.com/en/addresses"
+									title="My addresses" rel="nofollow">-->My addresses
+								</a></li>
+								<li><a>
+										<!--href="http://fo.demo.prestashop.com/en/identity"
+									title="Manage my personal information" rel="nofollow">-->My
+										personal info
+								</a></li>
+
+							</ul>
+						</div>
+					</section>
+					<!-- /Block myaccount module -->
+					<!-- MODULE Block contact infos -->
+					<section id="block_contact_infos"
+						class="footer-block col-xs-12 col-sm-4">
+						<div>
+							<h4>Store Information</h4>
+							<ul class="toggle-footer" style="">
+								<li><i class="icon-map-marker"></i>My Company, 42 avenue
+									des Champs Elys�es 75000 Paris France</li>
+								<li><i class="icon-phone"></i>Call us now: <span>0123-456-789</span>
+								</li>
+								<li><i class="icon-envelope-alt"></i>Email: <span><a
+										href="mailto:%73%61%6c%65%73@%79%6f%75%72%63%6f%6d%70%61%6e%79.%63%6f%6d">sales@yourcompany.com</a></span>
+								</li>
+							</ul>
+						</div>
+					</section>
+					<!-- /MODULE Block contact infos -->
+				</div>
+			</footer>
+		</div>
+		<!-- #footer -->
+	</div>
+	<!-- #page -->
+</body>
+</html>

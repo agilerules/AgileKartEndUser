@@ -1,0 +1,49 @@
+[
+				                   {
+				                		 "css1":"first-in-line",
+				                		 "css2":"first-item-of-tablet-line",
+				                		 "css3":"first-item-of-mobile-line",
+			                			 "popularBoolean":false},
+				                		
+				                	    {
+				                		 "css1":"last-item-of-mobile-line",
+				                		 "css2":"",
+				                		 "css3":"",
+			                			 "popularBoolean":false},
+				                		
+				                		{
+				                		 "css1":"last-item-of-tablet-line",
+				                		 "css2":"first-item-of-mobile-line",
+				                		 "css3":"",
+			                			 "popularBoolean":false},
+				                		 
+				                		 {
+				                		 "css1":"last-in-line",
+				                		 "css2":"first-item-of-tablet-line",
+				                		 "css3":"last-item-of-mobile-line",
+			                			 "popularBoolean":false},
+				                		 
+				                	    {
+				                		 "css1":"first-in-line",
+				                		 "css2":"last-line",
+				                		 "css3":"first-item-of-mobile-line",
+			                			 "popularBoolean":false},
+				                		 
+				                		 {
+				                		 "css1":"last-line",
+				                		 "css2":"last-item-of-tablet-line",
+				                		 "css3":"last-item-of-mobile-line",
+				                			 "popularBoolean":false},
+				                		 
+				                		 {
+				                		 "css1":"last-line",
+				                		 "css2":"first-item-of-tablet-line",
+				                		 "css3":"first-item-of-mobile-line",
+			                			 "popularBoolean":false},
+				                		 
+				                		 {
+				                		 "css1":"last-line",
+				                		 "css2":"last-item-of-tablet-line",
+				                		 "css3":"last-item-of-mobile-line",
+			                			 "popularBoolean":false}
+	]
