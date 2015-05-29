@@ -18,15 +18,15 @@
 				<p class="title_block">Catalog</p>
 				<div class="block_content">
 					<div>
-							<div class="layered_filter"  ng-repeat="optionGroups in optionsGroupsList">
+							<div class="layered_filter"  ng-repeat="optionGroups in optionsGroupsList(routeCategoryId) ">			
 							<div class="layered_subtitle_heading">
-								<span class="layered_subtitle">{{optionGroups.optionGroupName}}</span>
+								<span class="layered_subtitle">{{optionGroups.akOptionGroups.optionGroupName}}</span>
 							</div>
 							<ul class="col-lg-12 layered_filter_ul">
-								<li class="nomargin hiddable col-lg-12"  ng-repeat="options in optionsList(optionGroups.optionGroupId) track by options.optionId"><input
+								<li class="nomargin hiddable col-lg-12"  ng-repeat="options in optionsList(optionGroups.akOptionGroups.optionGroupId) track by options.optionId "><input
 									type="checkbox" class="checkbox" 
 												ng-model="flag"
-									 					ng-change='productIdList(optionGroups.optionGroupId,options.optionId,flag)' /> 
+									 					ng-change='productIdList(optionGroups.akOptionGroups.optionGroupId,options.optionId,flag)' /> 
 									 					<label> <a href="#" data-rel="nofollow">{{options.optionName}}</a>
 								</label></li>
 							</ul>
@@ -125,8 +125,7 @@
 
 			<!-- Products list -->
 			<ul class="product_list grid row">
-
-				<li ng-repeat="product in productList()" 
+					<li ng-repeat="product in productList()" 
 					class="ajax_block_product col-xs-12 col-sm-6 col-md-4 {{csspopular[$index].css1}} {{csspopular[$index].css2}} {{csspopular[$index].css3}}">
 					<div class="product-container" ">
 						<div class="left-block">

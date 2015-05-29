@@ -1,7 +1,7 @@
 /**
  * 
  */
-angular.module('enduser').controller('CategoryCtrl',function($scope,$http,$timeout,$routeParams,AkOptionGroupsResource,AkOptionsResource,AkProductOptionsResource,AkProductsResource,DataService){
+angular.module('enduser').controller('CategoryCtrl',function($scope,$http,$timeout,$routeParams,AkCategoryOptionsResource,AkOptionsResource,AkProductOptionsResource,AkProductsResource,DataService){
 			var opslocal=[];
 			var options=[];
 			var proOptions=[];
@@ -12,8 +12,7 @@ angular.module('enduser').controller('CategoryCtrl',function($scope,$http,$timeo
 			var check=0;
 			$scope.routeCategory=$routeParams.categoryValue;
 			var routeCatValue=$scope.routeCategory;
-				$scope.optionsGroupsList=AkOptionGroupsResource.queryAll();
-				$scope.optionsLists=AkOptionsResource.queryAll();
+		   		$scope.optionsLists=AkOptionsResource.queryAll();
 				$scope.productOptions=AkProductOptionsResource.queryAll();
 				$scope.productsList=AkProductsResource.queryAll();
 				$scope.optionsLists.$promise.then(function(opslocal){
@@ -83,6 +82,7 @@ angular.module('enduser').controller('CategoryCtrl',function($scope,$http,$timeo
 					for(var j=0;j<proList.length;j++){
 						if(proList[j].akProductCategories.categoryName==routeCatValue){
 							console.log("The route Value is "+routeCatValue);
+							$scope.routeCategoryId = proList[j].akProductCategories.categoryId
 						if(proList[j].productId==productsIds[i]){
 							if(products.length==0){
 								products.push(proList[j]);
@@ -103,11 +103,27 @@ angular.module('enduser').controller('CategoryCtrl',function($scope,$http,$timeo
 					}
 				}
 				$scope.noOfProducts=products.length;
-					
+				
 				return products;
 			};
 				});
 				});
 				});
+				
+				$scope.optionsGroupsList = AkCategoryOptionsResource.queryAll();
+				$scope.optionsGroupsList.$promise.then(function(catopslocal){
+					
+				$scope.optionsGroupsList=function(catId){
+					catoptions=[];
+					for(var i=0;i<catopslocal.length;i++){
+						if(catId==catopslocal[i].akProductCategories.categoryId){
+						 catoptions.push(catopslocal[i]);
+						}
+					}
+						return  catoptions;
+					
+				};
+				});
+				
 			 $scope.cart = DataService.cart;
 		});
