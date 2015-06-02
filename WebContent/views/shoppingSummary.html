@@ -26,8 +26,6 @@
 
 
 
-
-
 						<!-- Steps -->
 						<ul class="step clearfix" id="order_step">
 							<li class="step_current  first"><span><em>01.</em>
@@ -46,7 +44,7 @@
 
 
 
-						<p id="emptyCartWarning" class="alert alert-warning unvisible">Your
+						<p id="emptyCartWarning" ng-show="cart.items.length==0" class="alert alert-warning ">Your
 							shopping cart is empty.</p>
 						<div class="cart_last_product">
 							<div class="cart_last_product_header">
@@ -72,7 +70,7 @@
 						</div>
 
 
-						<div id="order-detail-content"
+						<div id="order-detail-content" ng-show="cart.items.length>0" 
 							class="table_block table-responsive">
 							<table id="cart_summary"
 								class="table table-bordered stock-management-on">
@@ -89,7 +87,7 @@
 								</thead>
 								<tfoot>
 
-<script src="scripts/logic/agileShoppingCart.js"></script>
+<script src="scripts/logic/end_user/agileShoppingCart.js"></script>
 
 
 									<tr class="cart_total_price">
@@ -136,15 +134,16 @@
 										<td class="cart_quantity text-center"><input
 											type="hidden" value="1" name="quantity_3_13_0_0_hidden" /> <input
 											size="2" type="text" autocomplete="off"
-											class="cart_quantity_input form-control grey" value="1"
+											class="cart_quantity_input form-control grey" ng-model="item.prodQuantity"
+
 											name="quantity_3_13_0_0" />
 											<div class="cart_quantity_button clearfix">
-												<a rel="nofollow"
+												<a rel="nofollow" ng-click="subCartQuantity(item)"
 													class="cart_quantity_down btn btn-default button-minus"
 													id="cart_quantity_down_3_13_0_0"
 													href=""
 													title="Subtract"> <span><i class="icon-minus"></i></span>
-												</a> <a rel="nofollow"
+												</a> <a rel="nofollow" ng-click="addCartQuantity(item)"
 													class="cart_quantity_up btn btn-default button-plus"
 													id="cart_quantity_up_3_13_0_0"
 													href=""
@@ -152,14 +151,14 @@
 											</div></td>
 										<td class="cart_delete text-center" data-title="Delete">
 											<div>
-												<a rel="nofollow" title="Delete"
+												<a rel="nofollow" title="Delete" ng-click="removeCartItem($index)"
 													class="cart_quantity_delete" id="3_13_0_0"
 													href=""><i
 													class="icon-trash"></i></a>
 											</div>
 										</td>
 										<td class="cart_total" data-title="Total"><span
-											class="price" id="total_product_price_3_13_0"> {{item.prodPrice | currency}}
+											class="price" id="total_product_price_3_13_0"> {{item.prodPrice*item.prodQuantity | currency}}
 										</span></td>
 
 									</tr>
@@ -176,7 +175,7 @@
 
 						<div id="HOOK_SHOPPING_CART"></div>
 						<p class="cart_navigation clearfix">
-							<a href="#/summary/login"
+							<a href="#/summary/login" ng-show="cart.items.length>0"
 								class="button btn btn-default standard-checkout button-medium"
 								title="Proceed to checkout"> <span>Proceed to
 									checkout<i class="icon-chevron-right right"></i>

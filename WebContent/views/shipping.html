@@ -101,57 +101,6 @@
 <link rel="stylesheet"
 	href="themes/default-bootstrap/css/modules/productcomments/productcomments.css"
 	type="text/css" media="all">
-<script type="text/javascript">
-var CUSTOMIZE_TEXTFIELD = 1;
-var FancyboxI18nClose = 'Close';
-var FancyboxI18nNext = 'Next';
-var FancyboxI18nPrev = 'Previous';
-var added_to_wishlist = 'Added to your wishlist.';
-var ajax_allowed = true;
-var ajaxsearch = true;
-var baseDir = 'http://fo.demo.prestashop.com/';
-var baseUri = 'http://fo.demo.prestashop.com/';
-var blocksearch_type = 'top';
-var cart_gift = false;
-var contentOnly = false;
-var currencyBlank = 0;
-var currencyFormat = 1;
-var currencyRate = 1;
-var currencySign = '$';
-var customizationIdMessage = 'Customization #';
-var delete_txt = 'Delete';
-var displayList = false;
-var freeProductTranslation = 'Free!';
-var freeShippingTranslation = 'Free shipping!';
-var generated_date = 1430497525;
-var hasDeliveryAddress = true;
-var id_lang = 1;
-var img_dir = 'http://fo.demo.prestashop.com/themes/default-bootstrap/img/';
-var instantsearch = false;
-var isGuest = 0;
-var isLogged = 1;
-var isMobile = false;
-var loggin_required = 'You must be logged in to manage your wishlist.';
-var msg_order_carrier = 'You must agree to the terms of service before continuing.';
-var mywishlist_url = 'http://fo.demo.prestashop.com/en/module/blockwishlist/mywishlist';
-var orderProcess = 'order';
-var orderUrl = 'http://fo.demo.prestashop.com/en/order';
-var page_name = 'order';
-var placeholder_blocknewsletter = 'Enter your e-mail';
-var priceDisplayMethod = 1;
-var priceDisplayPrecision = 2;
-var quickView = true;
-var removingLinkText = 'remove this product from my cart';
-var roundMode = 2;
-var search_url = 'http://fo.demo.prestashop.com/en/search';
-var static_token = '4e4ed86800684a46c0ff425c88050b26';
-var toBeDetermined = 'To be determined';
-var token = 'b688b07e838beb8b44102878ff453482';
-var txtProduct = 'Product';
-var txtProducts = 'Products';
-var usingSecureMode = false;
-var wishlistProductsIds = false;
-</script>
 
 <script type="text/javascript" src="js/jquery/jquery-1.11.0.min.js"></script>
 <script type="text/javascript"
@@ -267,7 +216,7 @@ var wishlistProductsIds = false;
 								<div id="HOOK_BEFORECARRIER"></div>
 								<div class="delivery_options_address">
 									<p class="carrier_title">Choose a shipping option for this
-										address: My address</p>
+										address: {{address.userTypeName}}</p>
 									<div class="delivery_options">
 										<div class="delivery_option item">
 											<div>
@@ -299,11 +248,11 @@ var wishlistProductsIds = false;
 								<div id="extra_carrier" style="display: none;"></div>
 								<p class="carrier_title">Terms of service</p>
 								<p class="checkbox">
-									<input type="checkbox" name="cgv" id="cgv" value="1"> <label
+									<input type="checkbox" ng-model="acceptTerms"
+            name="cgv" id="cgv"> <label
 										for="cgv">I agree to the terms of service and will
 										adhere to them unconditionally.</label>
-									<!-- <a> href="http://fo.demo.prestashop.com/en/content/3-terms-and-conditions-of-use?content_only=1" -->
-										<a class="iframe" rel="nofollow">(Read the Terms of Service)</a>
+											<a class="iframe" rel="nofollow">(Read the Terms of Service)</a>
 								</p>
 							</div>
 							<!-- end delivery_options_address -->
@@ -315,7 +264,7 @@ var wishlistProductsIds = false;
 									class="icon-chevron-left"></i> Continue shopping
 								</a> <a href="#/summary/payment"
 									class="button btn btn-default standard-checkout button-medium"
-									title="Proceed to checkout"> <span>Proceed to
+									title="Proceed to checkout" ng-show="acceptTerms"> <span>Proceed to
 										checkout</span>
 								</a>
 							</p>

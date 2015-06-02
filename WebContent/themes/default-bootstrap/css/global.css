@@ -7299,6 +7299,10 @@ a.price_discount_delete {
 #cart_summary .stock-management-on tbody td.cart_description {
   width: 480px; }
 
+#cart_summary tbody td.cart_description1 {
+  width: 515px; }
+
+
 .cart_discount_price {
   text-align: right; }
 

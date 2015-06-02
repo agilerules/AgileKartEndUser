@@ -343,7 +343,7 @@ var wishlistProductsIds = false;
 								<div class="row">
 									<div class="col-xs-12">
 										<p class="payment_module">
-											<a class="bankwire" href="#" title="Pay by bank wire">
+											<a class="bankwire" ng-click="confirmPayment()" href="" title="Pay by bank wire">
 												Pay by bank wire <span>(order processing will be
 													longer)</span>
 											</a>
@@ -353,7 +353,7 @@ var wishlistProductsIds = false;
 								<div class="row">
 									<div class="col-xs-12">
 										<p class="payment_module">
-											<a class="cheque" href="#" title="Pay by check."> Pay by
+											<a class="cheque" ng-click="confirmPayment()" href="" title="Pay by check."> Pay by
 												check <span>(order processing will be longer)</span>
 											</a>
 										</p>

@@ -1,7 +1,7 @@
 /**
  * 
  */
-angular.module('enduser').controller('productCtrl',function($scope,$http,$routeParams,AkProductsResource,AkProductOptionsResource,DataService){
+angular.module('enduser').controller('productCtrl',function($scope,$http,$routeParams,AkProductsResource,AkProductOptionsResource,DataService,ngDialog){
 	$scope.category=$routeParams.category;
 	$scope.prodId=$routeParams.productId;
 	$scope.productList=AkProductsResource.queryAll();
@@ -18,6 +18,34 @@ angular.module('enduser').controller('productCtrl',function($scope,$http,$routeP
 	 
 	 var products=[];
 	 var productUp=[];
+	 $scope.addCartQuantity = function(item) {
+			
+	      if(item.prodInStock>item.prodQuantity){
+	    	  item.prodQuantity = item.prodQuantity+1;
+	      }
+	};
+	$scope.subCartQuantity = function(item) {
+		 
+	      if(item.prodQuantity>1){
+	    	  item.prodQuantity = item.prodQuantity-1;
+	      }
+	};
+	
+	$scope.signUp = function(){
+		  $scope.openDialogId = 
+		        ngDialog.open({
+		            template: 'views/end_user/signup.html',
+		            scope: $scope,
+		            controller: 'SignupCtrl'
+		        });
+		    };
+	
+	
+	$scope.removeCartItem = function($index) { 
+		  $scope.cart.items.splice($index, 1);     
+		}
+	
+	 
 	 $scope.productRest=AkProductsResource.queryAll();
 	 $scope.productOptionsRest=AkProductOptionsResource.queryAll();
 	 $scope.productRest.$promise.then(function(dataProduct){

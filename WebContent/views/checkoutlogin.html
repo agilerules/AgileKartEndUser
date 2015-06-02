@@ -38,8 +38,7 @@
 			<!---->
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
-					<form action="#/summary/address" method="post"
-						id="create-account_form" class="box">
+					<form id="create-account_form" class="box">
 						<h3 class="page-subheading">Create an account</h3>
 						<div class="form_content clearfix">
 							<p>Please enter your email address to create an account.</p>
@@ -56,7 +55,7 @@
 								<input type="hidden" class="hidden" name="back"
 									value="http://fo.demo.prestashop.com/en/order?step=1" />
 								<button class="btn btn-default button button-medium exclusive"
-									type="submit" id="SubmitCreate" name="SubmitCreate">
+									ng-click = "signUp()" type="submit" id="SubmitCreate" name="SubmitCreate">
 									<span> <i class="icon-user left"></i> Create an account
 									</span>
 								</button>
@@ -66,22 +65,24 @@
 						</div>
 					</form>
 				</div>
-				<div class="col-xs-12 col-sm-6">
-					<form action="#/summary/address" method="post"
+				<div ng-controller = "LoginCtrl" class="col-xs-12 col-sm-6">
+					<form ng-submit="login()" role="form"
 						id="login_form" class="box">
 						<h3 class="page-subheading">Already registered?</h3>
 						<div class="form_content clearfix">
 							<div class="form-group">
 								<label for="email">Email address</label> <input
+									ng-model="newUser.userId"
 									class="is_required validate account_input form-control"
 									data-validate="isEmail" type="text" id="email" name="email"
-									value="abc@agilerulesconsultants.com" />
+									 />
 							</div>
 							<div class="form-group">
 								<label for="passwd">Password</label> <input
 									class="is_required validate account_input form-control"
+									ng-model="newUser.password"
 									type="password" data-validate="isPasswd" id="passwd"
-									name="passwd" value="agilerules" />
+									name="passwd"/>
 							</div>
 							<p class="lost_password form-group">
 							<!-- <a href="http://fo.demo.prestashop.com/en/password-recovery" -->	

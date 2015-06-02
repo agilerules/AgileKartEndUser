@@ -1,0 +1,138 @@
+
+		<div class="columns-container">
+			<div id="columns" class="container">
+
+				<!-- Breadcrumb -->
+				<div class="breadcrumb clearfix">
+					<a class="home" href="#"
+						title="Return to Home"><i class="icon-home"></i></a> <span
+						class="navigation-pipe">&gt;</span> Order Summary
+				</div>
+				<!-- /Breadcrumb -->
+<div>
+<h3 class="page-subheading">Order ID     : {{akOrders.orderId}}</h3>
+</div>
+				<div id="slider_row" class="row">
+					<div id="top_column" class="center_column col-xs-12 col-sm-12"></div>
+				</div>
+				<div class="row">
+					<div id="center_column" class="center_column col-xs-12 col-sm-12">
+		
+						<div class="paiement_block">
+							<div id="HOOK_TOP_PAYMENT"></div>
+							<div id="order-detail-content"
+								class="table_block table-responsive">
+								<table id="cart_summary" class="table table-bordered">
+									<thead>
+										<tr>
+											<th class="cart_product first_item">Product</th>
+											<th class="cart_description1 item ">Description</th>
+											<th class="cart_unit item text-center">Unit price</th>
+											<th class="cart_quantity item text-center">Qty</th>
+											<th class="cart_total last_item text-right">Total</th>
+										</tr>
+									</thead>
+									<tfoot>
+										<script src="scripts/logic/agileShoppingCart.js"></script>
+										<tr class="cart_total_price">
+											<td colspan="4" class="text-right">Total products</td>
+											<td colspan="2" class="price" id="total_product">{{cart.getTotalPrice()
+												| currency}}</td>
+										</tr>
+										<tr class="cart_total_voucher" style="display: none">
+											<td colspan="4" class="text-right">Total gift wrapping
+												cost:</td>
+											<td colspan="2" class="price-discount price"
+												id="total_wrapping">$0.00</td>
+										</tr>
+										<tr class="cart_total_delivery">
+											<td colspan="4" class="text-right">Total shipping</td>
+											<td colspan="2" class="price" id="total_shipping">$7.00</td>
+										</tr>
+										<tr class="cart_total_voucher" style="display: none">
+											<td colspan="4" class="text-right">Total vouchers</td>
+											<td colspan="2" class="price-discount price"
+												id="total_discount">$0.00</td>
+										</tr>
+										<tr class="cart_total_price">
+											<td colspan="4" class="total_price_container text-right"><span>Total</span></td>
+											<td colspan="2" class="price" id="total_price_container">
+												<span id="total_price" data-selenium-total-price="108.99">{{cart.getTotalPrice()+
+													7 | currency}}</span>
+											</td>
+										</tr>
+									</tfoot>
+
+									<tbody>
+										<tr id="product_3_13_0_0"
+											ng-repeat="item in cart.items | orderBy:'prodName'"
+											class="cart_item last_item first_item address_0 odd">
+											<td class="cart_product"><a href="#"><img
+													src="{{item.prodImgUrl}}" alt="Printed Dress" width="98"
+													height="98" /></a></td>
+											<td class="cart_description1">
+												<p class="product-name">
+													<a href="#">{{item.prodName}}</a>
+												</p>
+											</td>
+											<td class="cart_unit" data-title="Unit price">
+												<ul class="price text-center" id="product_price_3_13_0">
+													<li class="price">{{item.prodPrice | currency}}</li>
+												</ul>
+											</td>
+											<td class="cart_quantity text-center" data-title="Unit price">
+												<ul class="cart_quantity text-center" id="quantity_3_13_0">
+													<li class="cart_quantity text-center">{{item.prodQuantity}}</li>
+												</ul>
+											</td>
+											<td class="cart_total" data-title="Total"><span
+												class="price" id="total_product_price_3_13_0">
+													{{item.prodPrice | currency}} </span></td>
+
+										</tr>
+									</tbody>
+
+								</table>
+							</div>
+						
+												<!-- end order-detail-content -->
+							<div class="row">
+								<div class="col-xs-12 col-sm-6">
+									<ul  class="address item box" id="address_delivery">
+										<li class="address_title"><h3 class="page-subheading">Your
+												delivery address</h3></li>
+										<li class="address_firstname">{{akOrders.orderShipName}}</li>
+										<li class="address_firstname address_lastname">{{akOrders.orderShipAddress}}</li>
+										<li class="address_address1 address_address2">{{akOrders.orderShipAddress2}}</li>
+										<li class="address_city address_state_name address_postcode">{{akOrders.orderCity+" "+akOrders.orderState}}</li>
+										<li class="address_country_name">{{akOrders.orderCountry}}</li>
+										<li class="address_zip">{{akOrders.orderZip}}</li>
+										<li class="address_phone">{{akOrders.orderPhone}}</li>
+										<li class="address_fax">{{akOrders.orderFax}}</li>																		
+									</ul>
+								</div>
+								<div class="col-xs-12 col-sm-6">
+								<ul  class="address item box" id="address_delivery">
+								<li class="address_title"><h3 class="page-subheading">Payment Details</h3></li>
+								<p class="payment_module">Paid by bank wire
+										</p>
+								</ul>
+								
+								</div>
+							</div>
+
+
+
+
+						<div id="HOOK_SHOPPING_CART"></div>
+						
+					</div>
+					<!-- #center_column -->
+				</div>
+				<!-- .row -->
+				<div>
+				<h2 class="page-subheading">Order Status : {{akOrders.orderStatus}}</h2></div>
+			</div>
+			<!-- #columns -->
+		</div>
+	

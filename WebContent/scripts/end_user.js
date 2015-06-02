@@ -1,36 +1,88 @@
 /**
  * 
  */
-var agileKart = angular.module('enduser',['ngRoute','ngResource']);
+var agileKart = angular.module('enduser',['ngRoute','ngResource','MessageModule','ngDialog']);
 agileKart.config(function($routeProvider) {
-			$routeProvider.when('/block/:blockvalue', {
-				controller : 'popularctrl',
-				templateUrl : 'views/blockpopular.html'
-			}).when('/category/:categoryValue', {
-				controller : 'CategoryCtrl',
-				templateUrl : 'views/categoryPage.html'
-			}).when('/product/:category/:productId', {
-				controller : 'productCtrl',
-				templateUrl : 'views/productPage.html'
-			}).when('/summary', {
-				controller : 'productCtrl',
-				templateUrl : 'views/shoppingSummary.html'
-			}).when('/summary/login', {
-				controller : 'productCtrl',
-				templateUrl : 'views/checkoutlogin.html'
-			}).when('/summary/address', {
-				controller : 'productCtrl',
-				templateUrl : 'views/address.html'
-			}).when('/summary/shipping', {
-				controller : 'productCtrl',
-				templateUrl : 'views/shipping.html'
-			}).when('/summary/payment', {
-				controller : 'productCtrl',
-				templateUrl : 'views/payment.html'
-			}).otherwise({
-				redirectTo : '/block/blockpopular'
-			});
-		});
+	$routeProvider.when('/block/:blockvalue', {
+		controller : 'popularctrl',
+		templateUrl : 'views/blockpopular.html'
+	}).when('/category/:categoryValue', {
+		controller : 'CategoryCtrl',
+		templateUrl : 'views/categoryPage.html'
+	}).when('/product/:category/:productId', {
+		controller : 'productCtrl',
+		templateUrl : 'views/productPage.html'
+	}).when('/summary', {
+		controller : 'productCtrl',
+		templateUrl : 'views/shoppingSummary.html'
+	}).when('/summary/login', {
+		controller : 'productCtrl',
+		templateUrl : 'views/checkoutlogin.html'
+	}).when('/summary/address', {
+		controller : 'addressCtrl',
+		templateUrl : 'views/address.html'
+	}).when('/summary/shipping', {
+		controller : 'shippingCtrl',
+		templateUrl : 'views/shipping.html'
+	}).when('/summary/payment', {
+		controller : 'paymentCtrl',
+		templateUrl : 'views/payment.html'
+	}).when('/summary/order', {
+		controller : 'orderCtrl',
+		templateUrl : 'views/orderSummary.html'
+	}).otherwise({
+		redirectTo : '/block/blockpopular'
+	});
+});
+agileKart.factory('authHttpResponseInterceptor', ['$q', '$rootScope', '$location', 'SecurityService', 'MessageService', function($q, $rootScope, $location, SecurityService, MessageService) {
+    return {
+	'request' : function(config) {
+	    SecurityService.secureRequest(config);
+	    return config || $q.when(config);
+	},
+
+	'response' : function(response) {
+	    return response || $q.when(response);
+	},
+	
+	'responseError' : function(rejection) {
+                console.log("Server Response Status: " + rejection.status);
+                console.log(rejection);
+
+                if (rejection.data && rejection.data.message) {
+                    MessageService.setMessages(rejection.data.message);
+                } else {
+                    MessageService.setMessages(["Unexpected error from server."]);
+                }
+    
+                if (rejection.status === 401) {
+                    console.log("[INFO] Unauthorized response.");
+                    SecurityService.endSession();
+                    $location.path('/login');
+                    MessageService.setMessages(["Please, provide your credentials."]);
+                } else if (rejection.status == 400) {
+                    console.log("[ERROR] Bad request response from the server.");
+                } else if (rejection.status == 500) {
+                    console.log("[ERROR] Internal server error.");
+                } else {
+                    console.log("[ERROR] Unexpected error from server.");
+                }
+
+	    return $q.reject(rejection);
+	}
+    }
+} ]).config([ '$httpProvider', function($httpProvider) {
+        //Http Intercpetor to check auth failures for xhr requests
+        $httpProvider.interceptors.push('authHttpResponseInterceptor');
+    } ]).run(function($rootScope, $location, MessageService) {
+
+        // register listener to watch route changes
+        $rootScope.$on("$routeChangeStart", function(event, next, current) {
+            MessageService.clearMessages();
+        });
+});
+
+
 	agileKart.factory("DataService", function () {
 	    
 	    var myCart = new shoppingCart("AgileKart");
@@ -59,4 +111,25 @@ agileKart.config(function($routeProvider) {
 	    };
 	});
 		
+	angular.module('MessageModule', ['ngResource', 'ngRoute'])
+	.factory('MessageService', ['$rootScope', function($rootScope) {
+	    $rootScope.messages = [];
+
+	    var MessageService = function() {
+	        this.setMessages = function(messages) {
+	            console.log(messages);
+	            $rootScope.messages = messages;
+	        };
+
+	        this.hasMessages = function() {
+	            return $rootScope.messages && $rootScope.messages.length > 0;
+	        }
+
+	        this.clearMessages = function() {
+	            $rootScope.messages = [];
+	        }
+	    };
+
+	    return new MessageService();
+	}]);
 		
