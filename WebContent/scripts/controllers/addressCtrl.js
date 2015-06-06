@@ -99,6 +99,8 @@ angular.module('enduser').factory('addressData', function() {
 	var billingAddress = {};
 	var shipping = {};
 	var user = {};
+	var payment = {};
+	var orderId = {};
 	return {
 		getDeliveryAddress : function() {
 			return deliveryAddress;
@@ -112,6 +114,12 @@ angular.module('enduser').factory('addressData', function() {
 		getUser : function() {
 			return user;
 		},
+		getPayment : function() {
+			return payment;
+		},
+		getOrderId : function() {
+			return orderId;
+		},
 		setDeliveryAddress : function(newFormData) {
 			deliveryAddress = newFormData;
 		},
@@ -124,10 +132,17 @@ angular.module('enduser').factory('addressData', function() {
 		setUser : function(newFormData) {
 			user = newFormData;
 		},
+		setPayment : function(newFormData) {
+			payment = newFormData;
+		},
+		serOrderId : function(newFormData) {
+			orderId = newFormData;
+		},
 		resetData : function() {
 			deliveryAddress = {};
 			billingAddress = {};
 			shipping = {};
+			payment = {};
 		}
 	};
 });

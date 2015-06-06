@@ -1,4 +1,5 @@
-    angular.module('enduser').factory('LoginResource', ['$resource', function($resource) {
+    angular.module('PicketLinkSecurityModule',[]).factory('LoginResource', ['$resource', function($resource) {
+    	console.log("Sucess");
         return function(newUser) {
             return $resource('http://localhost:8080/AgileKartRest/rest/private/:dest', {}, {
             login: {method: 'POST', params: {dest:"authc"}, headers:{"Authorization": "Basic " + btoa(newUser.userId + ":" + newUser.password)} },
