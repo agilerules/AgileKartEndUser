@@ -12,6 +12,15 @@
 		<div>
 			<h3 class="page-subheading">Order ID : {{akOrders.orderId}}</h3>
 		</div>
+		<div>
+			<h2 class="page-subheading">Order Status :
+				{{akOrders.orderStatus}}</h2>
+		</div>
+		<div>
+			<h2 class="page-subheading">Payment Mode :
+				{{akOrders.orderPaymentMode}}</h2>
+		</div>
+
 		<div id="slider_row" class="row">
 			<div id="top_column" class="center_column col-xs-12 col-sm-12"></div>
 		</div>
@@ -32,10 +41,9 @@
 								</tr>
 							</thead>
 							<tfoot>
-								<script src="scripts/logic/agileShoppingCart.js"></script>
 								<tr class="cart_total_price">
 									<td colspan="4" class="text-right">Total products</td>
-									<td colspan="2" class="price" id="total_product">{{cart.getTotalPrice()
+									<td colspan="2" class="price" id="total_product">{{cart.totalPrice
 										| currency}}</td>
 								</tr>
 								<tr class="cart_total_voucher" style="display: none">
@@ -56,12 +64,11 @@
 								<tr class="cart_total_price">
 									<td colspan="4" class="total_price_container text-right"><span>Total</span></td>
 									<td colspan="2" class="price" id="total_price_container">
-										<span id="total_price" data-selenium-total-price="108.99">{{cart.getTotalPrice()+
+										<span id="total_price" data-selenium-total-price="108.99">{{cart.totalPrice+
 											7 | currency}}</span>
 									</td>
 								</tr>
 							</tfoot>
-
 							<tbody>
 								<tr id="product_3_13_0_0"
 									ng-repeat="item in cart.items | orderBy:'prodName'"
@@ -87,19 +94,16 @@
 									<td class="cart_total" data-title="Total"><span
 										class="price" id="total_product_price_3_13_0">
 											{{item.prodPrice | currency}} </span></td>
-
 								</tr>
 							</tbody>
-
 						</table>
 					</div>
-
 					<!-- end order-detail-content -->
 					<div class="row">
 						<div class="col-xs-12 col-sm-6">
 							<ul class="address item box" id="address_delivery">
-								<li class="address_title"><h3 class="page-subheading">Your
-										delivery address</h3></li>
+								<li class="address_title"><h3 class="page-subheading">Delivery
+										address</h3></li>
 								<li class="address_firstname">{{akOrders.orderShipName}}</li>
 								<li class="address_firstname address_lastname">{{akOrders.orderShipAddress}}</li>
 								<li class="address_address1 address_address2">{{akOrders.orderShipAddress2}}</li>
@@ -113,8 +117,8 @@
 						</div>
 						<div class="col-xs-12 col-sm-6">
 							<ul class="address item box" id="address_delivery">
-								<li class="address_title"><h3 class="page-subheading">Your
-										billing address</h3></li>
+								<li class="address_title"><h3 class="page-subheading">Billing
+										address</h3></li>
 								<li class="address_firstname">{{akOrders.orderBillName}}</li>
 								<li class="address_firstname address_lastname">{{akOrders.orderBillAddress}}</li>
 								<li class="address_address1 address_address2">{{akOrders.orderBillAddress2}}</li>
@@ -127,20 +131,11 @@
 							</ul>
 						</div>
 					</div>
-
-
-
-
 					<div id="HOOK_SHOPPING_CART"></div>
-
 				</div>
 				<!-- #center_column -->
 			</div>
 			<!-- .row -->
-			<div>
-				<h2 class="page-subheading">Order Status :
-					{{akOrders.orderStatus}}</h2>
-			</div>
 		</div>
 		<!-- #columns -->
 	</div>

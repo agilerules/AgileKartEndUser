@@ -6,7 +6,7 @@ angular.module('enduser').controller(
 			$scope.cart = DataService.cart;
 			$scope.akOrders = $scope.akOrders || {};
 			$scope.products = [];
-			$scope.akOrderDetails = {};
+			$scope.akOrderDetails = [];
 			$scope.akOrders.akUsers = addressData.getUser();
 			$scope.confirmPayment = function(paymentMode) {
 				ngDialog.openConfirm({template: 'views/confirmPayment.html',
@@ -14,10 +14,13 @@ angular.module('enduser').controller(
 					  scope: $scope //Pass the scope object if you need to access in the template
 					}).then(
 						function(value) {
+						
 							addressData.setPayment(paymentMode);
 							$scope.setOrder();
 							$scope.setItems();
-							$scope.setAndSaveOrderDetail();
+							console.log("Save Order");
+							$scope.saveOrder();
+						
 						},
 						function(value) {
 							console.log("Cancel");
@@ -101,6 +104,8 @@ angular.module('enduser').controller(
 					var id = locationParser(responseHeaders);
 					$scope.akOrders.orderId = id;
 					$scope.displayError = false;
+					console.log("Save Order Details");
+					$scope.setAndSaveOrderDetail();
 				};
 				var errorCallback = function() {
 					$scope.displayError = true;
@@ -110,30 +115,35 @@ angular.module('enduser').controller(
 			};
 
 			$scope.setAndSaveOrderDetail = function() {
+				
 				for (var i = 0; i < $scope.products.length; i++) {
+					$scope.akOrderDetails[i] = {};
+					$scope.akOrderDetails[i].akProducts = {};
 					var item = $scope.products[i];
-					$scope.akOrderDetails.akProducts = {};
-					$scope.akOrderDetails.akProducts.productId = item.prodId;
-					$scope.akOrderDetails.akOrders = $scope.akOrders;
-					$scope.akOrderDetails.detailName = item.prodName;
-					$scope.akOrderDetails.detailPrice = item.prodPrice;
-					$scope.akOrderDetails.detailSku = "test";
-					$scope.akOrderDetails.detailQuantity = item.prodQuantity;
+					$scope.akOrderDetails[i].detailName = item.prodName;
+					console.log("product name = "+$scope.akOrderDetails[i].detailName);
+					$scope.akOrderDetails[i].detailPrice = item.prodPrice;
+					$scope.akOrderDetails[i].detailSku = "test";
+					$scope.akOrderDetails[i].detailQuantity = item.prodQuantity;
+					$scope.akOrderDetails[i].akOrders = $scope.akOrders;
+					
+					$scope.akOrderDetails[i].akProducts.productId=item.prodId;
 					var successCallback = function(data,
-							responseHeaders) {
+							responseHeaders) {		
 						
-						 var AkOrdersId = locationParser(responseHeaders);
-						 console.log("Order ID"+AkOrdersId);
-						 addressData.serOrderId(AkOrdersId);
-				         $location.path('/summary/order/' + AkOrdersId);
 						$scope.displayError = false;
 					};
 					var errorCallback = function() {
 						$scope.displayError = true;
 					};
-					AkOrderDetailsResource.save($scope.akOrderDetails,
+					AkOrderDetailsResource.save($scope.akOrderDetails[i],
 							successCallback, errorCallback);
-				}
+					
+					}
+				$location.path('/summary/order/' + $scope.akOrders.orderId);
+			
+				console.log("Order ID"+ $scope.akOrders.orderId);
+			
 			}
 		
 		});
