@@ -5,18 +5,37 @@ agileKart.config(function($routeProvider) {
 	$routeProvider.when('/block/:blockvalue', {
 		controller : 'popularctrl',
 		templateUrl : 'views/blockpopular.html',
+		access : {
+			isFree : true
+		}
 
 	}).when('/category/:categoryValue', {
 		controller : 'CategoryCtrl',
 		templateUrl : 'views/categoryPage.html',
+		access : {
+			isFree : true
+		}
+
+	}).when('/login', {
+		controller : 'LoginCtrl',
+		templateUrl : 'views/login.html',
+		access : {
+			isFree : true
+		}
 
 	}).when('/product/:category/:productId', {
 		controller : 'productCtrl',
 		templateUrl : 'views/productPage.html',
+		access : {
+			isFree : true
+		}
 
 	}).when('/summary', {
 		controller : 'productCtrl',
 		templateUrl : 'views/shoppingSummary.html',
+		access : {
+			isFree : true
+		}
 
 	}).when('/summary/login', {
 		controller : 'productCtrl',
@@ -25,18 +44,30 @@ agileKart.config(function($routeProvider) {
 	}).when('/summary/address', {
 		controller : 'addressCtrl',
 		templateUrl : 'views/address.html',
+		access : {
+			isFree : false
+		}
 
 	}).when('/summary/shipping', {
 		controller : 'shippingCtrl',
 		templateUrl : 'views/shipping.html',
+		access : {
+			isFree : false
+		}
 
 	}).when('/summary/payment', {
 		controller : 'paymentCtrl',
 		templateUrl : 'views/payment.html',
+		access : {
+			isFree : false
+		}
 
 	}).when('/summary/order/:orderId', {
 		controller : 'orderCtrl',
 		templateUrl : 'views/orderSummary.html',
+		access : {
+			isFree : true
+		}
 	}).otherwise({
 		redirectTo : '/block/blockpopular'
 	});
@@ -49,7 +80,6 @@ agileKart
 						'$rootScope',
 						'$location',
 						'SecurityService',
-
 						'MessageService',
 						function($q, $rootScope, $location, SecurityService,
 								MessageService) {
@@ -98,16 +128,32 @@ agileKart
 									return $q.reject(rejection);
 								}
 							}
-						} ]).config([ '$httpProvider', function($httpProvider) {
-			//Http Intercpetor to check auth failures for xhr requests
+						} ])
+		.config([ '$httpProvider', function($httpProvider) {
+			// Http Intercpetor to check auth failures for xhr requests
 			$httpProvider.interceptors.push('authHttpResponseInterceptor');
-		} ]).run(function($rootScope, $location, MessageService) {
+		} ])
+		.run(
+				function($rootScope, $location, MessageService, SecurityService) {
 
-			// register listener to watch route changes
-			$rootScope.$on("$routeChangeStart", function(event, next, current) {
-				MessageService.clearMessages();
-			});
-		});
+					// register listener to watch route changes
+					$rootScope
+							.$on(
+									"$routeChangeStart",
+									function(event, next, current) {
+										console.log("current"
+												+ next.originalPath);
+										if (next.originalPath!='/login'&&!next.access.isFree
+												&& (SecurityService.getToken() == null
+														|| SecurityService
+																.getToken() == '' || SecurityService
+														.getToken() == 'undefined')) {
+											$rootScope.nextRoute = next.originalPath;
+											$location.path('/login');
+										}
+										MessageService.clearMessages();
+									});
+				});
 
 agileKart.factory("DataService", function() {
 
@@ -117,8 +163,9 @@ agileKart.factory("DataService", function() {
 			"jaugustin@agilerulesconsultants.com");
 
 	// enable Google Wallet checkout
-	// note: the second parameter identifies the merchant; in order to use the 
-	// shopping cart with Google Wallet, you have to create a merchant account with 
+	// note: the second parameter identifies the merchant; in order to use the
+	// shopping cart with Google Wallet, you have to create a merchant account
+	// with
 	// Google. You can do that here:
 	// https://developers.google.com/commerce/wallet/digital/training/getting-started/merchant-setup
 	myCart.addCheckoutParameters("Google", "500640663394527", {

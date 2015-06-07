@@ -72,9 +72,12 @@ function LoginCtrl($scope, LoginResource, SecurityService, $location, $rootScope
                 function (data) {
                     SecurityService.initSession(data);
                     $rootScope.user = $scope.newUser.userId;
-                    $location.path( "/summary/address" );
+                    $location.path( $rootScope.nextRoute );
                 }
             );
+        }
+        else {
+        	 $location.path( "/" );
         }
     };
 

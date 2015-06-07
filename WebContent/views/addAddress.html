@@ -1,80 +1,125 @@
-<div class="container" >
-  <div class="row">
-    <div class="offset4 span4">
-		<form class="well form-horizontal" ng-submit="addAddress()" role="form">
-		
-			<h3 class="page-subheading">Add new Address</h3>
-		    <div class="form-group">
-		        <label for="addresstypeName" class="col-sm-2 control-label">Address Name:</label>
-		        <div class="col-sm-10">
-		            <input type="text" name="addresstypeNm" id="addresstypeNm"  ng-model="akUserAddress.userTypeName" class="form-control" placeholder="Address 1" required autofocus/>
-		        </div>
-		    </div>
-		    <div class="form-group">
-		        <label for="firstName" class="col-sm-2 control-label">First Name:</label>
-		        <div class="col-sm-10">
-		            <input type="text" name="firstNm" id="firstNm"  ng-model="akUserAddress.userFirstName" class="form-control" placeholder="First Name" required autofocus/>
-		        </div>
-		    </div>
-		    <div class="form-group">
-		        <label for="lastName" class="col-sm-2 control-label">Last Name:</label>
-		        <div class="col-sm-10">
-		            <input type="text" name="lastNm" id="lastNm"  ng-model="akUserAddress.userLastName" class="form-control" placeholder="Last Name" required autofocus/>
-		        </div>
-		    </div>
-		    <div class="form-group">
-		        <label for="address1" class="col-sm-2 control-label">Address 1:</label>
-		        <div class="col-sm-10">
-		            <input type="text" name="address1" id="address1"  ng-model="akUserAddress.userAddress" class="form-control" placeholder="Address 1" required autofocus/>
-		        </div>
-		    </div>
-		    <div class="form-group">
-		        <label for="address2" class="col-sm-2 control-label">Address 2:</label>
-		        <div class="col-sm-10">
-		            <input type="text" name="address2" id=""address2""  ng-model="akUserAddress.userAddress2" class="form-control" placeholder="Address 2" required autofocus/>
-		        </div>
-		    </div>
-		    <div class="form-group">
-		        <label for="city" class="col-sm-2 control-label">City:</label>
-		        <div class="col-sm-10">
-		            <input type="text" name="city" id="city" ng-model="akUserAddress.userCity" class="form-control" placeholder="City" required/>
-		        </div>
-		    </div>
-		    <div class="form-group">
-		        <label for="state" class="col-sm-2 control-label">State:</label>
-		        <div class="col-sm-10">
-		            <input type="text" name="state" id="state" ng-model="akUserAddress.userState" class="form-control" placeholder="State" required/>
-		        </div>
-		    </div>
-		    <div class="form-group">
-		        <label for="country" class="col-sm-2 control-label">Country:</label>
-		        <div class="col-sm-10">
-		            <input type="text" name="country" id="country" ng-model="akUserAddress.userCountry" class="form-control" placeholder="Country" required/>
-		        </div>
-		    </div>
-		    
-		    <div class="form-group">
-		        <label for="zip" class="col-sm-2 control-label">Zip Code:</label>
-		        <div class="col-sm-10">
-		            <input type="text" name="zip" id="zip" ng-model="akUserAddress.userZip" class="form-control" placeholder="Zip Code" required/>
-		        </div>
-		    </div>
-		    
-		    <div class="form-group">
-		        <label for="phone" class="col-sm-2 control-label">Phone:</label>
-		        <div class="col-sm-10">
-		            <input type="text" name="phone" id="phone" ng-model="akUserAddress.userPhone" class="form-control" placeholder="Phone" required/>
-		        </div>
-		    </div>
-		    
-		    <div class="form-group">
-		        <label for="fax" class="col-sm-2 control-label">Fax:</label>
-		        <div class="col-sm-10">
-		            <input type="text" name="fax" id="fax" ng-model="akUserAddress.userFax" class="form-control" placeholder="Fax" required/>
-		        </div>
-		    </div>
-		    <input type="submit" id="add" value="Add" class="button btn btn-default button-large"/>
-		</form>
+<div class="container-fluid">
+	<div>
+		<h3 class="page-subheading">Add a new Address</h3>
 	</div>
-  </div>
+	<form class="well form-horizontal" role="form">
+
+		<div class="form-group">
+			<label class="control-label col-sm-5" for="addresstypeName">Address
+				Name:</label>
+			<div class="col-sm-6">
+				<input type="text" name="addresstypeNm" id="addresstypeNm"
+					ng-model="akUserAddress.userTypeName" class="form-control"
+					placeholder="Address 1" required autofocus bs-typeahead />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-5" for="firstName">First
+				Name:</label>
+			<div class="col-sm-6">
+				<input type="text" name="firstNm" id="firstNm"
+					ng-model="akUserAddress.userFirstName" class="form-control"
+					placeholder="First Name" required autofocus bs-typeahead />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="lastName" class="col-sm-5 control-label">Last
+				Name:</label>
+			<div class="col-sm-6">
+				<input type="text" name="lastNm" id="lastNm"
+					ng-model="akUserAddress.userLastName" class="form-control"
+					placeholder="Last Name" required autofocus bs-typeahead />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="address1" class="col-sm-5 control-label">Address
+				1:</label>
+			<div class="col-sm-6">
+				<input type="text" name="address1" id="address1"
+					ng-model="akUserAddress.userAddress" class="form-control"
+					placeholder="Address 1" required autofocus bs-typeahead />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="address2" class="col-sm-5 control-label">Address
+				2:</label>
+			<div class="col-sm-6">
+				<input type="text" name="address2" id=""
+					address2""  ng-model="akUserAddress.userAddress2"
+					class="form-control" placeholder="Address 2" required autofocus
+					bs-typeahead />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="city" class="col-sm-5 control-label">City:</label>
+			<div class="col-sm-6">
+				<input type="text" name="city" id="city"
+					ng-model="akUserAddress.userCity" class="form-control"
+					placeholder="City" required bs-typeahead />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="state" class="col-sm-5 control-label">State:</label>
+			<div class="col-sm-6">
+				<input type="text" name="state" id="state"
+					ng-model="akUserAddress.userState" class="form-control"
+					placeholder="State" required bs-typeahead />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="country" class="col-sm-5 control-label">Country:</label>
+			<div class="col-sm-6">
+				<input type="text" name="country" id="country"
+					ng-model="akUserAddress.userCountry" class="form-control"
+					placeholder="Country" required bs-typeahead />
+			</div>
+		</div>
+
+
+		<div class="form-group">
+			<label for="zip" class="col-sm-5 control-label">Zip Code:</label>
+			<div class="col-sm-6">
+				<input type="text" name="zip" id="zip"
+					ng-model="akUserAddress.userZip" class="form-control"
+					placeholder="Zip Code" required bs-typeahead />
+			</div>
+		</div>
+
+
+
+
+		<div class="form-group">
+			<label for="phone" class="col-sm-5 control-label">Phone:</label>
+			<div class="col-sm-6">
+				<input type="text" name="phone" id="phone"
+					ng-model="akUserAddress.userPhone" class="form-control"
+					placeholder="Phone" required bs-typeahead />
+			</div>
+		</div>
+
+
+
+		<div class="form-group">
+			<label for="fax" class="col-sm-5 control-label">Fax:</label>
+			<div class="col-sm-6">
+				<input type="text" name="fax" id="fax"
+					ng-model="akUserAddress.userFax" class="form-control"
+					placeholder="Fax" required bs-typeahead />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<hr noshade>
+			<div class="col-sm-offset-4 col-sm-10">
+				<a href="" class="btn btn-sm btn-primary"
+					ng-click="addAddress()">Save Changes</a>
+			</div>
+		</div>
+	</form>
 </div>
