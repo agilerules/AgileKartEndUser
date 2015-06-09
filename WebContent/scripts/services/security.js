@@ -6,7 +6,7 @@
         });
     }}])
     .factory('LogoutResource', ['$resource', function($resource) {
-        return $resource('rest/private/:dest', {}, {
+        return $resource('http://localhost:8080/AgileKartRest/rest/private/:dest', {}, {
             logout: {method: 'POST', params: {dest:"logout"}}
         });
         }])
@@ -60,6 +60,7 @@
 
         return new SecurityService();
     }]);
+   
 
 // controllers definition
 function LoginCtrl($scope, LoginResource, SecurityService, $location, $rootScope) {
@@ -84,11 +85,22 @@ function LoginCtrl($scope, LoginResource, SecurityService, $location, $rootScope
     $scope.redirectoToSignUp = function() {
         $location.path( "/signup" );
     };
+    
+   
 
 }
 
+
+
 function SignupCtrl($scope, $http, RegistrationResource, $q, $location, $timeout, $window, ngDialog) {
-	
+	 $scope.signUp = function(){
+		  $scope.openDialogId = 
+		        ngDialog.open({
+		            template: 'views/signup.html',
+		            scope: $scope,
+		            controller: 'SignupCtrl'
+		        });
+		    };
     $scope.register = function() {
     	
         if($scope.newUser.password != $scope.newUser.passwordConfirmation) {

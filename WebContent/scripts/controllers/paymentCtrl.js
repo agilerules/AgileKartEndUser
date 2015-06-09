@@ -20,6 +20,7 @@ angular.module('enduser').controller(
 							$scope.setItems();
 							console.log("Save Order");
 							$scope.saveOrder();
+							
 						
 						},
 						function(value) {
@@ -130,7 +131,7 @@ angular.module('enduser').controller(
 					$scope.akOrderDetails[i].akProducts.productId=item.prodId;
 					var successCallback = function(data,
 							responseHeaders) {		
-						
+						$scope.cart.clearItems();
 						$scope.displayError = false;
 					};
 					var errorCallback = function() {

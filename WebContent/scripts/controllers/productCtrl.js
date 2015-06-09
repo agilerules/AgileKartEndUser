@@ -31,16 +31,6 @@ angular.module('enduser').controller('productCtrl',function($scope,$http,$routeP
 	      }
 	};
 	
-	$scope.signUp = function(){
-		  $scope.openDialogId = 
-		        ngDialog.open({
-		            template: 'views/end_user/signup.html',
-		            scope: $scope,
-		            controller: 'SignupCtrl'
-		        });
-		    };
-	
-	
 	$scope.removeCartItem = function($index) { 
 		  $scope.cart.items.splice($index, 1);     
 		}

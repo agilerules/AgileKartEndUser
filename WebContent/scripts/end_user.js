@@ -23,6 +23,13 @@ agileKart.config(function($routeProvider) {
 			isFree : true
 		}
 
+	}).when('/logout', {
+		controller : 'LogoutCtrl',
+		templateUrl : 'views/login.html',
+		access : {
+			isFree : true
+		}
+
 	}).when('/product/:category/:productId', {
 		controller : 'productCtrl',
 		templateUrl : 'views/productPage.html',
@@ -40,6 +47,9 @@ agileKart.config(function($routeProvider) {
 	}).when('/summary/login', {
 		controller : 'productCtrl',
 		templateUrl : 'views/checkoutlogin.html',
+		access : {
+			isFree : true
+		}
 
 	}).when('/summary/address', {
 		controller : 'addressCtrl',
@@ -69,7 +79,8 @@ agileKart.config(function($routeProvider) {
 			isFree : true
 		}
 	}).otherwise({
-		redirectTo : '/block/blockpopular'
+		redirectTo : '/block/blockpopular',
+		
 	});
 });
 agileKart
@@ -130,7 +141,7 @@ agileKart
 							}
 						} ])
 		.config([ '$httpProvider', function($httpProvider) {
-			// Http Intercpetor to check auth failures for xhr requests
+			
 			$httpProvider.interceptors.push('authHttpResponseInterceptor');
 		} ])
 		.run(
@@ -141,13 +152,16 @@ agileKart
 							.$on(
 									"$routeChangeStart",
 									function(event, next, current) {
-										console.log("current"
-												+ next.originalPath);
-										if (next.originalPath!='/login'&&!next.access.isFree
+										if (typeof next.originalPath !== 'undefined'
+												&& typeof next.access !== 'undefined'
+												&& next.originalPath != '/login'
+												&& !next.access.isFree
 												&& (SecurityService.getToken() == null
 														|| SecurityService
 																.getToken() == '' || SecurityService
 														.getToken() == 'undefined')) {
+											console.log("Success");
+											$rootScope.currentRoute = current.originalPath;
 											$rootScope.nextRoute = next.originalPath;
 											$location.path('/login');
 										}
