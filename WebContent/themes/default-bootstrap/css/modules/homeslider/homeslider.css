@@ -32,7 +32,10 @@
       width: 50%;
       font-size: 1.15em;
       line-height: 1.3em;
-      padding: 0.5em 0;
+    padding-top: 10px;
+    padding-right: 25px;
+    padding-bottom: 10px;
+    padding-left: 25px;
       color: white; }
     #homepage-slider .homeslider-description button {
       font-size: 1.2em;
