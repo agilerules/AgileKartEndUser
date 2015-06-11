@@ -11,6 +11,7 @@ angular.module('enduser').controller('CategoryCtrl',function($scope,$http,$timeo
 			var a=0;
 			var check=0;
 			$scope.routeCategory=$routeParams.categoryValue;
+			$scope.layout = 'grid';
 			var routeCatValue=$scope.routeCategory;
 		   		$scope.optionsLists=AkOptionsResource.queryAll();
 				$scope.productOptions=AkProductOptionsResource.queryAll();

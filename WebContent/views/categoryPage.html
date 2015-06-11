@@ -79,9 +79,9 @@
 				<div class="sortPagiBar clearfix">
 					<ul class="display hidden-xs">
 						<li class="display-title">View:</li>
-						<li id="grid"><a rel="nofollow" href="#" title="Grid"><i
-								class="icon-th-large"></i>Grid</a></li>
-						<li id="list"><a rel="nofollow" href="#" title="List"><i
+						<li ng-class = "{'active':layout == 'grid'}" id="grid" title="grid"><a rel="nofollow" href="" ng-click="layout='grid'" title="Grid" ><i
+								class="icon-th-large"></i>Grid</a></li>								
+						<li ng-class = "{'active':layout == 'list'}" id="list" title="list"> <a rel="nofollow" href="" ng-click="layout='list'" title="List" ><i
 								class="icon-th-list"></i>List</a></li>
 					</ul>
 
@@ -89,16 +89,14 @@
 						action=""
 						class="productsSortForm">
 						<div class="select selector1">
-							<label for="selectProductSort">Sort by</label> <select
+							<label for="selectProductSort">Sort by</label> <select ng-model="sortorder"
 								id="selectProductSort" class="selectProductSort form-control">
 								<option value="position:asc" selected="selected">--</option>
-								<option value="price:asc">Price: Lowest first</option>
-								<option value="price:desc">Price: Highest first</option>
-								<option value="name:asc">Product Name: A to Z</option>
-								<option value="name:desc">Product Name: Z to A</option>
-								<option value="quantity:desc">In stock</option>
-								<option value="reference:asc">Reference: Lowest first</option>
-								<option value="reference:desc">Reference: Highest first</option>
+								<option value="productPrice">Price: Lowest first</option>
+								<option value="-productPrice">Price: Highest first</option>
+								<option value="productName">Product Name: A to Z</option>
+								<option value="-productName">Product Name: Z to A</option>
+								<option value="productStock">In stock</option>
 							</select>
 						</div>
 					</form>
@@ -124,19 +122,22 @@
 
 
 			<!-- Products list -->
-			<ul class="product_list grid row">
-					<li ng-repeat="product in productList()" 
+			<div ng-show="layout == 'grid'" >
+			
+			<ul class="product_list row grid" >
+
+				<li ng-repeat="product in productList() | orderBy:sortorder" 
 					class="ajax_block_product col-xs-12 col-sm-6 col-md-4 {{csspopular[$index].css1}} {{csspopular[$index].css2}} {{csspopular[$index].css3}}">
 					<div class="product-container" ">
 						<div class="left-block">
 							<div class="product-image-container">
 								<a class="product_img_link"
 									href="#/product/{{product.akProductCategories.categoryName}}/{{product.productId}}"
-									title="{{product.productCartDesc}}" itemprop="url"> <img
+									title="{{product.productName}}" itemprop="url"> <img
 									class="replace-2x img-responsive"
 									ng-src="{{product.productThumb}}"
-									alt="{{product.productCartDesc}}"
-									title="{{product.productCartDesc}}" width="250" height="250"
+									alt="{{product.productName}}"
+									title="{{product.productName}}" width="250" height="250"
 									itemprop="image" />
 								</a>
 								<div class="quick-view-wrapper-mobile">
@@ -154,7 +155,7 @@
 							<h5 itemprop="name">
 								<a class="product-name"
 									href="#/product/{{product.akProductCategories.categoryName}}/{{product.productId}}"
-									title="Faded Short Sleeves T-shirt" itemprop="url"> {{product.productCartDesc}} </a>
+									title="{{product.productCartDesc}}" itemprop="url"> {{product.productName}} </a>
 							</h5>
 							<div class="content_price">
 								<span class="price product-price"> ${{product.productPrice}} </span>
@@ -176,10 +177,81 @@
 				</li>
 
 			</ul>
+			</div>
+            <!-- Products list -->
+         <div ng-show="layout == 'list'">
+           
+			<ul class="product_list row list" >
+
+				<li ng-repeat="product in productList() | orderBy:sortorder" 
+					class="ajax_block_product first-in-line first-item-of-tablet-line first-item-of-mobile-line col-xs-12">
+					<div class="product-container">
+					<div class="row">
+					<div class="left-block col-xs-4 col-xs-5 col-md-4">
+						
+							<div class="product-image-container">
+								<a class="product_img_link"
+									href="#/product/{{product.akProductCategories.categoryName}}/{{product.productId}}"
+									title="{{product.productName}}" itemprop="url"> <img
+									class="replace-2x img-responsive"
+									ng-src="{{product.productThumb}}"
+									alt="{{product.productName}}"
+									title="{{product.productName}}" width="250" height="250"
+									itemprop="image" />
+								</a>
+								<div class="quick-view-wrapper-mobile">
+									<a class="quick-view-mobile">
+										href="#"
+										rel="#">
+										<i class="icon-eye-open"></i>
+									</a>
+								</div>
+							</div>
+                          </div>
+                         
+						<div class="center-block col-xs-4 col-xs-7 col-md-4">
+						<div class="product-flags">
+						</div>
+						<h5 itemprop="name">
+						{{product.productCartDesc}}
+						</h5>
+						<p class="product-desc">
+						{{product.productLongDesc}}
+						</p>
+						</div>
+						<div class="right-block col-xs-4 col-xs-12 col-md-4">
+						<div class="right-block-content row">
+							<h5 itemprop="name">
+								<a class="product-name"
+									href="#/product/{{product.akProductCategories.categoryName}}/{{product.productId}}"
+									title="{{product.productCartDesc}}" itemprop="url"> {{product.productName}}</a>
+							</h5>
+							<div class="content_price">
+								<span class="price product-price"> ${{product.productPrice}} </span>
 
 
+							</div>
+							<div class="button-container">
+								<a class="button ajax_add_to_cart_button btn btn-default"
+									rel="nofollow" title="Add to cart" data-id-product="1"
+									data-minimal_quantity="1" 
+									ng-click="cart.addItem(product.productId,product.productCartDesc,product.productPrice,1,product.productThumb,product.productStock)"> <span>Add to cart</span>
+								</a> <a class="button lnk_view btn btn-default"
+									href="#/product/{{product.akProductCategories.categoryName}}/{{product.productId}}"
+									title="View"> <span>More</span>
+								</a>
+							</div>
+						</div>
+					</div> <!-- .product-container> -->
+					</div>
+					</div>
+					
+				</li>
 
+			</ul>
+           
 
+        </div>
 
 			<div class="content_sortPagiBar">
 				<div class="bottom-pagination-content clearfix" ng-switch on="noOfProducts>0">
