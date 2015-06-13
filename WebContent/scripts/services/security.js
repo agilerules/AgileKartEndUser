@@ -68,14 +68,9 @@ function LoginCtrl($scope, LoginResource, SecurityService, $location, $rootScope
 	$scope.newUser.userId = "admin@agilerulesconsultants.com";
 	$scope.newUser.password = "admin";
     $scope.login = function() {
-        if ($scope.newUser.userId != undefined && $scope.newUser.password != undefined) {
-            LoginResource($scope.newUser).login($scope.newUser,
-                function (data) {
-                    SecurityService.initSession(data);
-                    $rootScope.user = $scope.newUser.userId;
-                    $location.path( $rootScope.nextRoute );
-                }
-            );
+        if ($scope.newUser.userId === "admin@agilerulesconsultants.com" && $scope.newUser.password === "admin") {
+        	$rootScope.user=$scope.newUser.userId;
+        	$location.path( "/summary/address" );
         }
         else {
         	 $location.path( "/" );
