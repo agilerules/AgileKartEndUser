@@ -1,7 +1,7 @@
 angular.module('enduser').controller(
 		'addressCtrl',
 		function($scope, $http, $rootScope, $location, $routeParams, AkUsersResource,
-				AkUserAddressResource, DataService, ngDialog, addressData) {
+				AkUserAddressResource,AkAddressResourceByUser, DataService, ngDialog, addressData) {
 			$scope.addressType = [];
 			$scope.akUserAddress = $scope.akUserAddress || {};
 			$scope.akUser = $scope.akUser || {};
@@ -15,7 +15,7 @@ angular.module('enduser').controller(
 					$scope.akUser = users;
 					addressData.setUser($scope.akUser);
 					$scope.userId = data.userId;
-					var userAddrs = AkUserAddressResource.queryAll({
+					var userAddrs = AkAddressResourceByUser.listAll({
 						Id : $scope.userId
 					});
 					console.log("UserAddressResource");

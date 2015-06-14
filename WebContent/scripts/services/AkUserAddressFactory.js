@@ -1,4 +1,8 @@
 angular.module('enduser').factory('AkUserAddressResource', function($resource){
-    var resource = $resource('http://localhost:8080/AgileKartRest/rest/akuseraddresses/:Id',{Id:'@Id'},{'queryAll':{method:'GET',isArray:true},'update':{method:'PUT'}});
+    var resource = $resource('http://localhost:8080/AgileKartRest/rest/akuseraddresses/:Id',{Id:'@Id'},{'update':{method:'PUT'}});
+    return resource;
+});
+angular.module('enduser').factory('AkAddressResourceByUser', function($resource){
+    var resource = $resource('http://localhost:8080/AgileKartRest/rest/akuseraddresses/user/:Id',{Id:'@Id'},{'listAll':{method:'GET',isArray:true}});
     return resource;
 });
