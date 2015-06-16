@@ -4,6 +4,8 @@
 angular.module('enduser').controller('productCtrl',function($scope,$http,$routeParams,AkProductsResource,AkProductOptionsResource,DataService,ngDialog){
 	$scope.category=$routeParams.category;
 	$scope.prodId=$routeParams.productId;
+	$scope.isloading = true;
+	$scope.isLoading1 = true;
 	$scope.productList=AkProductsResource.queryAll();
 	var prodlocal=$scope.productList;
 	$scope.product=function($scope){
@@ -114,6 +116,7 @@ angular.module('enduser').controller('productCtrl',function($scope,$http,$routeP
 						    console.log("error");
 						  });
 		 });
+		 isLoading1 = false;
 	 });
 	 
 	 

@@ -16,10 +16,15 @@
 		</div>
 		<!-- /Breadcrumb -->
 
+
+
 		<div id="slider_row" class="row">
 			<div id="top_column" class="center_column col-xs-12 col-sm-12"></div>
+			<div class="col-md-2 col-md-offset-5" ng-activity-indicator="CircledDark"></div>
+			<div ng-show="AILoading" class="col-md-2 col-md-offset-5 heading-counter">   Loading..</div>
+			
 		</div>
-		<div class="row">
+		<div ng-hide="AILoading = isloading"  class="row">
 			<div id="center_column" class="center_column col-xs-12 col-sm-12">
 
 
@@ -34,7 +39,7 @@
 							<div id="image-block" class="clearfix">
 								<span id="view_full_size"> <img id="bigpic"
 									itemprop="image" src="{{product().productThumb}}"
-									title="{{product().productCartDesc}}"
+									title="{{product().productCartDesc}}" imageonload
 									alt="{{product().productCartDesc}}" width="458" height="458" />
 								</span>
 							</div>

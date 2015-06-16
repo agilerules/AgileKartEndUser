@@ -1,5 +1,5 @@
 var agileKart = angular.module('enduser', [ 'ngRoute', 'ngResource',
-		'MessageModule', 'ngDialog', 'PicketLinkSecurityModule' ]);
+		'MessageModule', 'ngDialog', 'PicketLinkSecurityModule', 'ngActivityIndicator' ]);
 console.log("Sucess");
 agileKart.config(function($routeProvider) {
 	$routeProvider.when('/block/:blockvalue', {
@@ -136,3 +136,16 @@ angular.module('MessageModule', [ 'ngResource', 'ngRoute' ]).factory(
 
 					return new MessageService();
 				} ]);
+
+agileKart.directive('imageonload', function() {
+    return {
+        restrict: 'A',
+        scope: true,
+        link: function(scope, element, attrs) {
+            element.bind('load', function() {
+            	scope.$parent.isloading = false;
+               
+            });
+        }
+    };
+});

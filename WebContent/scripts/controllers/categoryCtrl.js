@@ -1,7 +1,7 @@
 /**
  * 
  */
-angular.module('enduser').controller('CategoryCtrl',function($scope,$http,$timeout,$routeParams,AkCategoryOptionsResource,AkOptionsResource,AkProductOptionsResource,AkProductsResource,DataService){
+angular.module('enduser').controller('CategoryCtrl',function($scope,$http,$timeout,$routeParams,$activityIndicator,AkCategoryOptionsResource,AkOptionsResource,AkProductOptionsResource,AkProductsResource,DataService){
 			var opslocal=[];
 			var options=[];
 			var proOptions=[];
@@ -10,8 +10,20 @@ angular.module('enduser').controller('CategoryCtrl',function($scope,$http,$timeo
 			var products=[];
 			var a=0;
 			var check=0;
+			$scope.isLoading1 = true;
+			$scope.isLoading2 = true;
 			$scope.routeCategory=$routeParams.categoryValue;
 			$scope.layout = 'grid';
+			$scope.start = function () {
+				console.log("Starting");
+				$activityIndicator.startAnimating();
+			};
+
+			$scope.stop = function () {
+				console.log("Stopping");
+				$activityIndicator.stopAnimating();
+			};
+			$scope.start();
 			var routeCatValue=$scope.routeCategory;
 		   		$scope.optionsLists=AkOptionsResource.queryAll();
 				$scope.productOptions=AkProductOptionsResource.queryAll();
@@ -109,6 +121,7 @@ angular.module('enduser').controller('CategoryCtrl',function($scope,$http,$timeo
 			};
 				});
 				});
+				$scope.isLoading1 = false;
 				});
 				
 				$scope.optionsGroupsList = AkCategoryOptionsResource.queryAll();
@@ -124,7 +137,9 @@ angular.module('enduser').controller('CategoryCtrl',function($scope,$http,$timeo
 						return  catoptions;
 					
 				};
+				$scope.isLoading2 = false;
 				});
 				
 			 $scope.cart = DataService.cart;
+			 
 		});

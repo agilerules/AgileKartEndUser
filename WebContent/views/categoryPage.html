@@ -10,8 +10,12 @@
 
 	<div id="slider_row" class="row">
 		<div id="top_column" class="center_column col-xs-12 col-sm-12"></div>
-	</div>
-	<div class="row">
+		<div class="col-md-2 col-md-offset-5" ng-activity-indicator="CircledDark"></div>
+		<div ng-show="AILoading" class="col-md-2 col-md-offset-5 heading-counter">   Loading..</div>
+		</div>
+   
+				
+	<div ng-hide="AILoading = isLoading1||isLoading2||isloading" class="row">
 		<div id="left_column" class="column col-xs-12 col-sm-3">
 			<!-- Block layered navigation module -->
 			<div id="layered_block_left" class="block">
@@ -135,7 +139,7 @@
 									href="#/product/{{product.akProductCategories.categoryName}}/{{product.productId}}"
 									title="{{product.productName}}" itemprop="url"> <img
 									class="replace-2x img-responsive"
-									ng-src="{{product.productThumb}}"
+									ng-src="{{product.productThumb}}" imageonload
 									alt="{{product.productName}}"
 									title="{{product.productName}}" width="250" height="250"
 									itemprop="image" />
