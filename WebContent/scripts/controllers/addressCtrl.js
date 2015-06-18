@@ -6,6 +6,7 @@ angular.module('enduser').controller(
 			$scope.akUserAddress = $scope.akUserAddress || {};
 			$scope.akUser = $scope.akUser || {};
 			$scope.akUserAddress.akUsers = {};
+			$scope.isLoading1 = true;
 			$scope.get = function() {
 				$scope.addressType = [];
 				var users = AkUsersResource.get({
@@ -29,6 +30,7 @@ angular.module('enduser').controller(
 									userAddrs[i]);
 							$scope.addressType.push(addressPair);
 							console.log($scope.addressType)
+							$scope.isLoading1 = false;
 						}
 					});
 				});

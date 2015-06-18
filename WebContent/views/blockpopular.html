@@ -121,11 +121,13 @@ var wishlistProductsIds = false;
 
 </head>
 <body>
+<div id="columns" ng-show="AILoading" class="container ng-cloak">
+<div class="col-md-2 col-md-offset-5" ng-activity-indicator="CircledDark"></div>
+		<div  class="col-md-2 col-md-offset-5 heading-counter">   Loading..</div>
+		</div>
 
 
-
-
-			<div id="columns" class="container">
+			<div id="columns" ng-hide="AILoading = isLoading1||isloading" class="container ng-cloak">
 <!-- block header place -->		
 
 										<div id="slider_row" class="row">

@@ -9,6 +9,7 @@ angular
 					$scope.cart = {};
 					$scope.cart.items = [];
 					$scope.akOrderDetails = {};
+					$scope.isLoading1 = true;
 
 					var successCallback = function(data) {
 						console.log("Success callback");
@@ -28,6 +29,7 @@ angular
 								$scope.cart.items.push(item);
 							}							
 						})
+						$scope.isLoading1 = false;
 					};
 					var errorCallback = function() {
 						console.log("Error");

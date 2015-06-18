@@ -227,11 +227,11 @@ var wishlistProductsIds = false;
 					<div id="top_column" class="center_column col-xs-12 col-sm-12"></div>
 				</div>
 				<div class="row">
+				<script src="scripts/logic/agileShoppingCart.js"></script>
 					<div id="center_column" class="center_column col-xs-12 col-sm-12">
 						<h1 class="page-heading">
 							Please choose your payment method <span class="heading-counter">Your
-								shopping cart contains: <span id="summary_products_quantity">2
-									products</span>
+								shopping cart contains: <span id="summary_products_quantity">{{cart.getTotalCount()}} products</span>
 							</span>
 						</h1>
 						<!-- Steps -->
@@ -270,7 +270,7 @@ var wishlistProductsIds = false;
 										</tr>
 									</thead>
 									<tfoot>
-										<script src="scripts/logic/agileShoppingCart.js"></script>
+										
 										<tr class="cart_total_price">
 											<td colspan="4" class="text-right">Total products</td>
 											<td colspan="2" class="price" id="total_product">{{cart.getTotalPrice()

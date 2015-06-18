@@ -71,7 +71,7 @@ shoppingCart.prototype.addItem = function (prodId, prodName, prodPrice, prodQuan
         }
 
         // new item, add now
-        if (!found) {
+        if (!found&&prodQuantity!=-1000) {
             var item = new cartItem(prodId, prodName, prodPrice, prodQuantity,prodImgUrl,prodInStock);
             this.items.push(item);
         }

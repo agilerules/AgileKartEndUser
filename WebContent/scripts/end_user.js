@@ -1,5 +1,5 @@
 var agileKart = angular.module('enduser', [ 'ngRoute', 'ngResource',
-		'MessageModule', 'ngDialog', 'PicketLinkSecurityModule', 'ngActivityIndicator' ]);
+		'MessageModule', 'ngDialog', 'PicketLinkSecurityModule', 'ngActivityIndicator','underscore' ]);
 console.log("Sucess");
 agileKart.config(function($routeProvider) {
 	$routeProvider.when('/block/:blockvalue', {
@@ -136,7 +136,9 @@ angular.module('MessageModule', [ 'ngResource', 'ngRoute' ]).factory(
 
 					return new MessageService();
 				} ]);
-
+angular.module('underscore', []).factory('_', function() {
+    return window._;
+});
 agileKart.directive('imageonload', function() {
     return {
         restrict: 'A',

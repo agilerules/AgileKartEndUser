@@ -4,15 +4,19 @@
 angular.module('enduser').controller('popularctrl',function ($scope,$http,$location,$routeParams,AkProductsResource,DataService) {
 			var products=[];
 			var filter=null;
-			
+			 $scope.isLoading1 = true;
 			
 			$scope.cart = DataService.cart;
 			 $scope.matchesRoute = function(route) {
+				
 			        var path = $location.path();
 			        return (path === ("/" + route) || path.indexOf("/" + route + "/") == 0);
 			    };
 			 
 			$scope.blockData=AkProductsResource.queryAll();
+			$scope.blockData.$promise.then(function(){
+				 $scope.isLoading1 = false;
+			});
 			console.log("The block data is "+$scope.blockData);
 			$scope.filterValue=function(){
 				console.log("Entering inside the filter value function");
