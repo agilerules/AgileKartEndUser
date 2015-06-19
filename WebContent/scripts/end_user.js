@@ -78,6 +78,12 @@ agileKart.config(function($routeProvider) {
 		access : {
 			isFree : true
 		}
+	}).when('/contact',{
+		controller : 'contactCtrl',
+		templateUrl : 'views/contact.html',
+		access : {
+			isFree : true
+		}
 	}).otherwise({
 		redirectTo : '/block/blockpopular',
 		
