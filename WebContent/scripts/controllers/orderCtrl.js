@@ -7,14 +7,23 @@ angular
 						AkOrderDetailByIdResource,DataService, ngDialog,
 						addressData) {
 					$scope.cart = {};
+					email = ' ';
+					address = ' ';
+					name = ' ';
+					products = [];
 					$scope.cart.items = [];
+					$scope.orderdet = [];
+					var postObject = new Object();
 					$scope.akOrderDetails = {};
 					$scope.isLoading1 = true;
-
+				
 					var successCallback = function(data) {
 						console.log("Success callback");
 						self.original = data;
 						$scope.akOrders = new AkOrdersResource(self.original);
+						email = $scope.akOrders.orderEmail;
+						address = $scope.akOrders.orderCity;
+						name = $scope.akOrders.orderShipName;
 						$scope.cart.totalPrice = $scope.akOrders.orderAmount;
 						var orderDetails = AkOrderDetailByIdResource.findbyOrderId({AkOrderId:$routeParams.orderId});
 						orderDetails.$promise.then(function(data){
@@ -27,8 +36,33 @@ angular
 								item.prodPrice = data[i].detailPrice;
 								item.prodQuantity = data[i].detailQuantity;
 								$scope.cart.items.push(item);
-							}							
-						})
+										}		
+								})						
+										
+						var product = AkOrderDetailByIdResource.findbyOrderId({AkOrderId:$routeParams.orderId});
+						product.$promise.then(function(data){
+						for(var j=0;j<product.length;j++){
+								var item2 = {};
+							
+								item2.prodctPrice = data[j].detailPrice;
+						
+								item2.productName = data[j].detailName;
+								
+								$scope.orderdet.push(item2);
+								}
+						
+							postObject.orderId =$routeParams.orderId;
+			    			postObject.email =email; 
+			    			postObject.address =address;
+			    			postObject.name = name;
+			    		
+							$http.post("/test/orderprocess", postObject).success(function(output){
+								 console.log("BPM call"+  output );
+							});
+						});
+					
+						postObject.products = $scope.orderdet;
+						
 						$scope.isLoading1 = false;
 					};
 					var errorCallback = function() {

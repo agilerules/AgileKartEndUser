@@ -213,7 +213,7 @@ var wishlistProductsIds = false;
 		<div class="layer_cart_overlay"></div>
 
 		<!-- /MODULE Block cart -->
-			<div class="columns-container">
+		<div class="columns-container">
 			<div id="columns" class="container">
 				<!-- Breadcrumb -->
 				<div class="breadcrumb clearfix">
@@ -227,24 +227,24 @@ var wishlistProductsIds = false;
 					<div id="top_column" class="center_column col-xs-12 col-sm-12"></div>
 				</div>
 				<div class="row">
-				<script src="scripts/logic/agileShoppingCart.js"></script>
+					<script src="scripts/logic/agileShoppingCart.js"></script>
 					<div id="center_column" class="center_column col-xs-12 col-sm-12">
 						<h1 class="page-heading">
 							Please choose your payment method <span class="heading-counter">Your
-								shopping cart contains: <span id="summary_products_quantity">{{cart.getTotalCount()}} products</span>
+								shopping cart contains: <span id="summary_products_quantity">{{cart.getTotalCount()}}
+									products</span>
 							</span>
 						</h1>
 						<!-- Steps -->
 						<ul class="step clearfix" id="order_step">
-							<li class="step_done first"><a
-								href="#/summary"> <em>01.</em>
+							<li class="step_done first"><a href="#/summary"> <em>01.</em>
 									Summary
 							</a></li>
-							<li class="step_done second"><a href="#/summary/login"> <em>02.</em>
-									Sign in
+							<li class="step_done second"><a href="#/summary/login">
+									<em>02.</em> Sign in
 							</a></li>
-							<li class="step_done third"><a href="#/summary/address"> <em>03.</em>
-									Address
+							<li class="step_done third"><a href="#/summary/address">
+									<em>03.</em> Address
 							</a></li>
 							<li class="step_done step_done_last four"><a
 								href="#/summary/shipping"> <em>04.</em> Shipping
@@ -262,7 +262,7 @@ var wishlistProductsIds = false;
 									<thead>
 										<tr>
 											<th class="cart_product first_item">Product</th>
-											<th class="cart_description item">Description</th>
+											<th class="cart_description item">Product Name</th>
 											<th class="cart_availability item text-center">Availability</th>
 											<th class="cart_unit item text-right">Unit price</th>
 											<th class="cart_quantity item text-center">Qty</th>
@@ -270,7 +270,7 @@ var wishlistProductsIds = false;
 										</tr>
 									</thead>
 									<tfoot>
-										
+
 										<tr class="cart_total_price">
 											<td colspan="4" class="text-right">Total products</td>
 											<td colspan="2" class="price" id="total_product">{{cart.getTotalPrice()
@@ -338,9 +338,10 @@ var wishlistProductsIds = false;
 								<div class="row">
 									<div class="col-xs-12">
 										<p class="payment_module">
-											<a class="bankwire" ng-click="confirmPayment('Pay by bank wire')" href="" title="Pay by bank wire">
-												Pay by bank wire <span>(order processing will be
-													longer)</span>
+											<a class="bankwire"
+												ng-click="confirmPayment('Pay by bank wire')" href=""
+												title="Pay by bank wire"> Pay by bank wire <span>(order
+													processing will be longer)</span>
 											</a>
 										</p>
 									</div>
@@ -348,8 +349,9 @@ var wishlistProductsIds = false;
 								<div class="row">
 									<div class="col-xs-12">
 										<p class="payment_module">
-											<a class="cheque" ng-click="confirmPayment('Pay by check')" href="" title="Pay by check."> Pay by
-												check <span>(order processing will be longer)</span>
+											<a class="cheque" ng-click="confirmPayment('Pay by check')"
+												href="" title="Pay by check."> Pay by check <span>(order
+													processing will be longer)</span>
 											</a>
 										</p>
 									</div>
@@ -357,9 +359,9 @@ var wishlistProductsIds = false;
 
 							</div>
 							<p class="cart_navigation clearfix">
-								<a href="#"
-									title="Previous" class="button-exclusive btn btn-default">
-									<i class="icon-chevron-left"></i> Continue shopping
+								<a href="#" title="Previous"
+									class="button-exclusive btn btn-default"> <i
+									class="icon-chevron-left"></i> Continue shopping
 								</a>
 							</p>
 						</div>

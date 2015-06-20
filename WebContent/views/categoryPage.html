@@ -2,38 +2,45 @@
 
 	<!-- Breadcrumb -->
 	<div class="breadcrumb clearfix">
-		<a class="home" href="#/block/blockpopular"
-			title="Return to Home"><i class="icon-home"></i></a> <span
-			class="navigation-pipe">&gt;</span> {{routeCategory}}
+		<a class="home" href="#/block/blockpopular" title="Return to Home"><i
+			class="icon-home"></i></a> <span class="navigation-pipe">&gt;</span>
+		{{routeCategory}}
 	</div>
 	<!-- /Breadcrumb -->
 
 	<div id="slider_row" class="row">
 		<div id="top_column" class="center_column col-xs-12 col-sm-12"></div>
-		<div class="col-md-2 col-md-offset-5" ng-activity-indicator="CircledDark"></div>
-		<div ng-show="AILoading" class="col-md-2 col-md-offset-5 heading-counter">   Loading..</div>
-		</div>
-   
-				
-	<div ng-hide="AILoading = isLoading1||isLoading2||isloading" class="row">
+		<div class="col-md-2 col-md-offset-5"
+			ng-activity-indicator="CircledDark"></div>
+		<div ng-show="AILoading"
+			class="col-md-2 col-md-offset-5 heading-counter">Loading..</div>
+	</div>
+
+
+	<div ng-hide="AILoading = isLoading1||isLoading2||isloading"
+		class="row">
 		<div id="left_column" class="column col-xs-12 col-sm-3">
 			<!-- Block layered navigation module -->
 			<div id="layered_block_left" class="block">
 				<p class="title_block">Catalog</p>
 				<div class="block_content">
 					<div>
-							<div class="layered_filter"  ng-repeat="optionGroups in optionsGroupsList(routeCategoryId) ">			
+						<div class="layered_filter"
+							ng-repeat="optionGroups in optionsGroupsList(routeCategoryId) ">
 							<div class="layered_subtitle_heading">
-								<span class="layered_subtitle">{{optionGroups.akOptionGroups.optionGroupName}}</span>
+								<span class="layered_subtitle"><b>{{optionGroups.akOptionGroups.optionGroupName}}</b></span>
 							</div>
-							<ul class="col-lg-12 layered_filter_ul">
-								<li class="nomargin hiddable col-lg-12"  ng-repeat="options in optionsList(optionGroups.akOptionGroups.optionGroupId) track by options.optionId "><input
-									type="checkbox" class="checkbox" 
-												ng-model="flag"
-									 					ng-change='productIdList(optionGroups.akOptionGroups.optionGroupId,options.optionId,flag)' /> 
-									 					<label> <a href="#" data-rel="nofollow">{{options.optionName}}</a>
-								</label></li>
-							</ul>
+							<table class=" layered_filter_ul">
+								<tr class="nomargin hiddable"
+									ng-repeat="options in optionsList(optionGroups.akOptionGroups.optionGroupId) track by options.optionId ">
+									<td><span><input type="checkbox" class="checkbox"
+											ng-model="flag"
+											ng-change='productIdList(optionGroups.akOptionGroups.optionGroupId,options.optionId,flag)'>
+									</span></td>
+									<td><label for="layered_block_left"> <a href="#"
+											data-rel="nofollow">{{options.optionName}}</a></label></td>
+								</tr>
+							</table>
 						</div>
 					</div>
 				</div>
@@ -45,29 +52,18 @@
 			<section id="informations_block_left_1"
 				class="block informations_block_left">
 				<p class="title_block">
-				<!--	<a href="http://fo.demo.prestashop.com/en/content/category/1-home">  -->
-						<a> Information </a>
+					<!--	<a href="http://fo.demo.prestashop.com/en/content/category/1-home">  -->
+					<a> Information </a>
 				</p>
 				<div class="block_content list-block">
 					<ul>
-						<li><a
-							href="#"
-							title="Delivery"> Delivery </a></li>
-						<li><a
-							href="#"
-							title="Legal Notice"> Legal Notice </a></li>
-						<li><a
-							href="#"
-							title="Terms and conditions of use"> Terms and conditions of
-								use </a></li>
-						<li><a
-							href="#"
-							title="About us"> About us </a></li>
-						<li><a
-							href="#"
-							title="Secure payment"> Secure payment </a></li>
-						<li><a href="#"
-							title="Our stores"> Our stores </a></li>
+						<li><a href="#" title="Delivery"> Delivery </a></li>
+						<li><a href="#" title="Legal Notice"> Legal Notice </a></li>
+						<li><a href="#" title="Terms and conditions of use">
+								Terms and conditions of use </a></li>
+						<li><a href="#" title="About us"> About us </a></li>
+						<li><a href="#" title="Secure payment"> Secure payment </a></li>
+						<li><a href="#" title="Our stores"> Our stores </a></li>
 					</ul>
 				</div>
 			</section>
@@ -83,18 +79,21 @@
 				<div class="sortPagiBar clearfix">
 					<ul class="display hidden-xs">
 						<li class="display-title">View:</li>
-						<li ng-class = "{'active':layout == 'grid'}" id="grid" title="grid"><a rel="nofollow" href="" ng-click="layout='grid'" title="Grid" ><i
-								class="icon-th-large"></i>Grid</a></li>								
-						<li ng-class = "{'active':layout == 'list'}" id="list" title="list"> <a rel="nofollow" href="" ng-click="layout='list'" title="List" ><i
-								class="icon-th-list"></i>List</a></li>
+						<li ng-class="{'selected':layout == 'grid'}" id="grid"
+							title="grid"><a rel="nofollow" href=""
+							ng-click="layout='grid'" title="Grid"><i
+								class="icon-th-large"></i>Grid</a></li>
+						<li ng-class="{'selected':layout == 'list'}" id="list"
+							title="list"><a rel="nofollow" href=""
+							ng-click="layout='list'" title="List"><i class="icon-th-list"></i>List</a>
+						</li>
 					</ul>
 
-					<form id="productsSortForm"
-						action=""
-						class="productsSortForm">
+					<form id="productsSortForm" action="" class="productsSortForm">
 						<div class="select selector1">
-							<label for="selectProductSort">Sort by</label> <select ng-model="sortorder"
-								id="selectProductSort" class="selectProductSort form-control">
+							<label for="selectProductSort">Sort by</label> <select
+								ng-model="sortorder" id="selectProductSort"
+								class="selectProductSort form-control">
 								<option value="position:asc" selected="selected">--</option>
 								<option value="productPrice">Price: Lowest first</option>
 								<option value="-productPrice">Price: Highest first</option>
@@ -111,12 +110,15 @@
 					<!-- /nbr product/page -->
 
 				</div>
-				<div class="top-pagination-content clearfix" ng-switch on="noOfProducts>0">
+				<div class="top-pagination-content clearfix" ng-switch
+					on="noOfProducts>0">
 
 					<!-- Pagination -->
-					<div id="pagination" class="pagination clearfix" ></div>
-					<div class="product-count" ng-switch-when='false'>No items found</div>
-					<div class="product-count" ng-switch-when='true'>Showing 1 - {{noOfProducts}} of {{noOfProducts}} items</div>
+					<div id="pagination" class="pagination clearfix"></div>
+					<div class="product-count" ng-switch-when='false'>No items
+						found</div>
+					<div class="product-count" ng-switch-when='true'>Showing 1 -
+						{{noOfProducts}} of {{noOfProducts}} items</div>
 					<!-- /Pagination -->
 
 				</div>
@@ -126,146 +128,200 @@
 
 
 			<!-- Products list -->
-			<div ng-show="layout == 'grid'" >
-			
-			<ul class="product_list row grid" >
+			<div ng-show="layout == 'grid'">
 
-				<li ng-repeat="product in productList() | orderBy:sortorder" 
-					class="ajax_block_product col-xs-12 col-sm-6 col-md-4 {{csspopular[$index].css1}} {{csspopular[$index].css2}} {{csspopular[$index].css3}}">
-					<div class="product-container" ">
-						<div class="left-block">
-							<div class="product-image-container">
-								<a class="product_img_link"
-									href="#/product/{{product.akProductCategories.categoryName}}/{{product.productId}}"
-									title="{{product.productName}}" itemprop="url"> <img
-									class="replace-2x img-responsive"
-									ng-src="{{product.productThumb}}" imageonload
-									alt="{{product.productName}}"
-									title="{{product.productName}}" width="250" height="250"
-									itemprop="image" />
-								</a>
-								<div class="quick-view-wrapper-mobile">
-									<a class="quick-view-mobile"
-										href="#"
-										rel="#">
-										<i class="icon-eye-open"></i>
-									</a>
+				<ul class="product_list row grid">
+
+					<li ng-repeat="product in productList() | orderBy:sortorder"
+						class="ajax_block_product col-xs-12 col-sm-6 col-md-4 {{csspopular[$index].css1}} {{csspopular[$index].css2}} {{csspopular[$index].css3}}">
+						<div class="product-container"">
+							<div class="left-block">
+								<div class="product-image-container">
+									<a class="product_img_link"
+										href="#/product/{{product.akProductCategories.categoryName}}/{{product.productId}}"
+										title="{{product.productName}}" itemprop="url"> <img
+										class="replace-2x img-responsive"
+										ng-src="{{product.productThumb}}" imageonload
+										alt="{{product.productName}}" title="{{product.productName}}"
+										width="250" height="250" itemprop="image" />
+										<div class="content_price">
+											<span class="price product-price">
+												${{product.productPrice}}</span></a>
+
+									<div class="quick-view-wrapper-mobile">
+										<a class="quick-view-mobile" href="#" rel="#"> <i
+											class="icon-eye-open"></i>
+										</a>
+									</div>
 								</div>
-							</div>
-
-
-						</div>
-						<div class="right-block">
-							<h5 itemprop="name">
-								<a class="product-name"
-									href="#/product/{{product.akProductCategories.categoryName}}/{{product.productId}}"
-									title="{{product.productCartDesc}}" itemprop="url"> {{product.productName}} </a>
-							</h5>
-							<div class="content_price">
-								<span class="price product-price"> ${{product.productPrice}} </span>
 
 
 							</div>
-							<div class="button-container">
-								<a class="button ajax_add_to_cart_button btn btn-default"
-									rel="nofollow" title="Add to cart" data-id-product="1"
-									data-minimal_quantity="1" 
-									ng-click="cart.addItem(product.productId,product.productCartDesc,product.productPrice,1,product.productThumb,product.productStock)"> <span>Add to cart</span>
-								</a> <a class="button lnk_view btn btn-default"
-									href="#/product/{{product.akProductCategories.categoryName}}/{{product.productId}}"
-									title="View"> <span>More</span>
-								</a>
-							</div>
-						</div>
-					</div> <!-- .product-container> -->
-				</li>
+							<div class="right-block">
+								<h5 itemprop="name">
+									<div class="button-container" stayle="display: none;">
+										<p id="availability_status" ng-switch
+											on="product.productStock==0">
+											<a class="button ajax_add_to_cart_button btn btn-default"
+												ng-switch-when="false" rel="nofollow" title="Add to cart"
+												data-id-product="1" data-minimal_quantity="1"
+												ng-click="cart.addItem(product.productId,product.productCartDesc,product.productPrice,1,product.productThumb,product.productStock)">
+												<span>Add to cart</span>
 
-			</ul>
+											</a> <a
+												class="button ajax_add_to_cart_button btn btn-default disabled"
+												ng-switch-when="true" rel="nofollow" title="Add to cart"
+												data-id-product="1" data-minimal_quantity="1"
+												ng-click="cart.addItem(product.productId,product.productCartDesc,product.productPrice,1,product.productThumb,product.productStock)">
+												<span>Add to cart</span>
+
+											</a> <a class="button lnk_view btn btn-default"
+												href="#/product/{{product.akProductCategories.categoryName}}/{{product.productId}}"
+												title="View"> <span>More</span>
+											</a>
+										</p>
+									</div>
+									<div class="content_price">
+										<span class="price product-price">
+											${{product.productPrice}} </span>
+
+
+									</div>
+							</div>
+							<p id="pQuantityAvailable">
+								<span id="quantityAvailable">{{product.productStock}}</span> <span
+									style="display: none;" id="quantityAvailableTxt">Item</span> <span
+									id="quantityAvailableTxtMultiple">Items</span>
+							</p>
+							<p id="availability_status" ng-switch on="product.productStock>0">
+
+								<span class="label label-success" ng-switch-when="true">In
+									stock</span> <span class="label label-success" ng-switch-when="false"
+									style="border: #d4323d; background-color: #f3515c">Out
+									of stock</span>
+
+							</p>
+						</div> <!-- .product-container> -->
+					</li>
+
+				</ul>
 			</div>
-            <!-- Products list -->
-         <div ng-show="layout == 'list'">
-           
-			<ul class="product_list row list" >
+			<!-- Products list -->
+			<div ng-show="layout == 'list'">
 
-				<li ng-repeat="product in productList() | orderBy:sortorder" 
-					class="ajax_block_product first-in-line first-item-of-tablet-line first-item-of-mobile-line col-xs-12">
-					<div class="product-container">
-					<div class="row">
-					<div class="left-block col-xs-4 col-xs-5 col-md-4">
-						
-							<div class="product-image-container">
-								<a class="product_img_link"
-									href="#/product/{{product.akProductCategories.categoryName}}/{{product.productId}}"
-									title="{{product.productName}}" itemprop="url"> <img
-									class="replace-2x img-responsive"
-									ng-src="{{product.productThumb}}"
-									alt="{{product.productName}}"
-									title="{{product.productName}}" width="250" height="250"
-									itemprop="image" />
-								</a>
-								<div class="quick-view-wrapper-mobile">
-									<a class="quick-view-mobile">
-										href="#"
-										rel="#">
-										<i class="icon-eye-open"></i>
-									</a>
+				<ul class="product_list row list">
+
+					<li ng-repeat="product in productList() | orderBy:sortorder"
+						class="ajax_block_product first-in-line first-item-of-tablet-line first-item-of-mobile-line col-xs-12">
+						<div class="product-container">
+							<div class="row">
+								<div class="left-block col-xs-4 col-xs-5 col-md-4">
+
+									<div class="product-image-container">
+										<a class="product_img_link"
+											href="#/product/{{product.akProductCategories.categoryName}}/{{product.productId}}"
+											title="{{product.productName}}" itemprop="url"> <img
+											class="replace-2x img-responsive"
+											ng-src="{{product.productThumb}}"
+											alt="{{product.productName}}" title="{{product.productName}}"
+											width="250" height="250" itemprop="image" />
+										</a>
+										<div class="quick-view-wrapper-mobile">
+											<a class="quick-view-mobile"> href="#" rel="#"> <i
+												class="icon-eye-open"></i>
+											</a>
+										</div>
+									</div>
 								</div>
+
+								<div class="center-block col-xs-4 col-xs-7 col-md-4">
+									<div class="product-flags"></div>
+									<h5 itemprop="name">{{product.productName}}</h5>
+									<p class="product-desc">{{product.productLongDesc}}</p>
+									<!-- number of item in stock -->
+									<p id="pQuantityAvailable">
+										<span id="quantityAvailable">{{product.productStock}}</span> <span
+											style="display: none;" id="quantityAvailableTxt">Item</span>
+										<span id="quantityAvailableTxtMultiple">Items</span>
+									</p>
+									<!-- availability or doesntExist -->
+									<p id="availability_statut" ng-switch
+										on="product.productStock>0">
+
+										<span class="label label-success" ng-switch-when="true">In
+											stock</span> <span class="label label-success"
+											ng-switch-when="false"
+											style="border: #d4323d; background-color: #f3515c">Out
+											of stock</span>
+									</p>
+								</div>
+								<div class="right-block col-xs-4 col-xs-12 col-md-4">
+									<div class="right-block-content row">
+										<h5 itemprop="name">
+											<a class="product-name"
+												href="#/product/{{product.akProductCategories.categoryName}}/{{product.productId}}"
+												title="{{product.productName}}" itemprop="url">
+												{{product.productName}}</a>
+										</h5>
+											<button
+											ng-click="cart.addItem(product.productId,product.productName,product.productPrice,1,product.productThumb,product.productStock)"
+											ng-show="csspopular[$index].popularBoolean"
+											class="button-block">Add to Cart</button>
+										<div class="content_price" ng-switch
+											on="product.productDiscountPercentage>0">
+											<span class="price product-price" ng-switch-when='true'>${{(product.productPrice-(((product.productPrice*product.productDiscountPercentage))/100)|number:2)|number:2}}</span>
+											<span class="old-price product-price" ng-switch-when='true'>
+												${{product.productPrice}} </span> <span
+												class="price-percent-reduction" ng-switch-when='true'>{{product.productDiscountPercentage}}%</span>
+
+											<span class="price product-price" ng-switch-when='false'>
+												${{product.productPrice}} </span>
+										</div>
+										<div class="button-container" style="display: none;">
+											<p id="availability_status" ng-switch
+												on="product.productStock==0">
+												<a class="button ajax_add_to_cart_button btn btn-default"
+													ng-switch-when="false" rel="nofollow" title="Add to cart"
+													data-id-product="1" data-minimal_quantity="1"
+													ng-click="cart.addItem(product.productId,product.productCartDesc,product.productPrice,1,product.productThumb,product.productStock)">
+													<span>Add to cart</span>
+
+												</a> <a
+													class="button ajax_add_to_cart_button btn btn-default disabled"
+													ng-switch-when="true" rel="nofollow" title="Add to cart"
+													data-id-product="1" data-minimal_quantity="1"
+													ng-click="cart.addItem(product.productId,product.productName,product.productPrice,1,product.productThumb,product.productStock)">
+													<span>Add to cart</span>
+												</a> <a class="button lnk_view btn btn-default"
+													href="#/product/{{product.akProductCategories.categoryName}}/{{product.productId}}"
+													title="View"> <span>More</span>
+												</a>
+										</div>
+									</div>
+								</div>
+								<!-- .product-container> -->
 							</div>
-                          </div>
-                         
-						<div class="center-block col-xs-4 col-xs-7 col-md-4">
-						<div class="product-flags">
 						</div>
-						<h5 itemprop="name">
-						{{product.productCartDesc}}
-						</h5>
-						<p class="product-desc">
-						{{product.productLongDesc}}
-						</p>
-						</div>
-						<div class="right-block col-xs-4 col-xs-12 col-md-4">
-						<div class="right-block-content row">
-							<h5 itemprop="name">
-								<a class="product-name"
-									href="#/product/{{product.akProductCategories.categoryName}}/{{product.productId}}"
-									title="{{product.productCartDesc}}" itemprop="url"> {{product.productName}}</a>
-							</h5>
-							<div class="content_price">
-								<span class="price product-price"> ${{product.productPrice}} </span>
+
+					</li>
+
+				</ul>
 
 
-							</div>
-							<div class="button-container">
-								<a class="button ajax_add_to_cart_button btn btn-default"
-									rel="nofollow" title="Add to cart" data-id-product="1"
-									data-minimal_quantity="1" 
-									ng-click="cart.addItem(product.productId,product.productCartDesc,product.productPrice,1,product.productThumb,product.productStock)"> <span>Add to cart</span>
-								</a> <a class="button lnk_view btn btn-default"
-									href="#/product/{{product.akProductCategories.categoryName}}/{{product.productId}}"
-									title="View"> <span>More</span>
-								</a>
-							</div>
-						</div>
-					</div> <!-- .product-container> -->
-					</div>
-					</div>
-					
-				</li>
-
-			</ul>
-           
-
-        </div>
+			</div>
 
 			<div class="content_sortPagiBar">
-				<div class="bottom-pagination-content clearfix" ng-switch on="noOfProducts>0">
+				<div class="bottom-pagination-content clearfix" ng-switch
+					on="noOfProducts>0">
 
 
 
 					<!-- Pagination -->
 					<div id="pagination_bottom" class="pagination clearfix"></div>
-					<div class="product-count" ng-switch-when='false'>No items found</div>
-					<div class="product-count" ng-switch-when='true'>Showing 1 - {{noOfProducts}} of {{noOfProducts}} items</div>
+					<div class="product-count" ng-switch-when='false'>No items
+						found</div>
+					<div class="product-count" ng-switch-when='true'>Showing 1 -
+						{{noOfProducts}} of {{noOfProducts}} items</div>
 					<!-- /Pagination -->
 
 				</div>

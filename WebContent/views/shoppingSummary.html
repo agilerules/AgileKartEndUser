@@ -1,196 +1,188 @@
 
-		<div class="columns-container">
-			<div id="columns" class="container">
+<div class="columns-container">
+	<div id="columns" class="container">
 
-				<!-- Breadcrumb -->
-				<div class="breadcrumb clearfix">
-					<a class="home" href="#"
-						title="Return to Home"><i class="icon-home"></i></a> <span
-						class="navigation-pipe">&gt;</span> Your shopping cart
-				</div>
-				<!-- /Breadcrumb -->
-
-				<div id="slider_row" class="row">
-					<div id="top_column" class="center_column col-xs-12 col-sm-12"></div>
-				</div>
-				<div class="row">
-					<div id="center_column" class="center_column col-xs-12 col-sm-12">
-
-
-						<h1 id="cart_title" class="page-heading">
-							Shopping-cart summary <span class="heading-counter">Your
-								shopping cart contains: <span id="summary_products_quantity">{{cart.getTotalCount()}}</span>
-							</span>
-						</h1>
-
-
-
-
-						<!-- Steps -->
-						<ul class="step clearfix" id="order_step">
-							<li class="step_current  first"><span><em>01.</em>
-									Summary</span></li>
-							<li class="step_todo second"><span><em>02.</em> Sign
-									in</span></li>
-							<li class="step_todo third"><span><em>03.</em>
-									Address</span></li>
-							<li class="step_todo four"><span><em>04.</em>
-									Shipping</span></li>
-							<li id="step_end" class="step_todo last"><span><em>05.</em>
-									Payment</span></li>
-						</ul>
-						<!-- /Steps -->
-
-
-
-
-						<p id="emptyCartWarning" ng-show="cart.items.length==0" class="alert alert-warning ">Your
-							shopping cart is empty.</p>
-						<div class="cart_last_product">
-							<div class="cart_last_product_header">
-								<div class="left">Last product added</div>
-							</div>
-						 	<a class="cart_last_product_img"
-								href="http://fo.demo.prestashop.com/en/casual-dresses/3-printed-dress.html">
-								<img
-								src="http://fo.demo.prestashop.com/8-small_default/printed-dress.jpg"
-								alt="Printed Dress" />
-							</a>
-							<div class="cart_last_product_content">
-								<p class="product-name">
-									<a
-										href="http://fo.demo.prestashop.com/en/casual-dresses/3-printed-dress.html#/size-s/color-orange">
-										Printed Dress </a>
-								</p>
-								<small> <a
-									href="http://fo.demo.prestashop.com/en/casual-dresses/3-printed-dress.html#/size-s/color-orange">
-										Size : S, Color : Orange </a>
-								</small>
-							</div>
-						</div>
-
-
-						<div id="order-detail-content" ng-show="cart.items.length>0" 
-							class="table_block table-responsive">
-							<table id="cart_summary"
-								class="table table-bordered stock-management-on">
-								<thead>
-									<tr>
-										<th class="cart_product first_item">Product</th>
-										<th class="cart_description item">Description</th>
-										<th class="cart_avail item text-center">Availability</th>
-										<th class="cart_unit item text-right">Unit price</th>
-										<th class="cart_quantity item text-center">Qty</th>
-										<th class="cart_delete last_item">&nbsp;</th>
-										<th class="cart_total item text-right">Total</th>
-									</tr>
-								</thead>
-								<tfoot>
-
-<script src="scripts/logic/end_user/agileShoppingCart.js"></script>
-
-
-									<tr class="cart_total_price">
-										<td rowspan="4" colspan="3" id="cart_voucher"
-											class="cart_voucher"></td>
-										<td colspan="3" class="text-right">Total products</td>
-										<td colspan="2" class="price" id="total_product">{{cart.getTotalPrice()  | currency}}</td>
-									</tr>
-									<tr class="cart_total_delivery">
-										<td colspan="3" class="text-right">Total shipping</td>
-										<td colspan="2" class="price" id="total_shipping">$7.00</td>
-									</tr>
-									<tr class="cart_total_price">
-										<td colspan="3" class="total_price_container text-right">
-											<span>Total</span>
-										</td>
-										<td colspan="2" class="price" id="total_price_container">
-											<span id="total_price">{{cart.getTotalPrice()+ 7  | currency}}</span>
-										</td>
-									</tr>
-								</tfoot>
-								<tbody>
-
-									<tr id="product_3_13_0_0" ng-repeat="item in cart.items | orderBy:'prodName'"
-										class="cart_item last_item first_item address_0 odd">
-										<td class="cart_product"><a
-											href="#"><img
-												src="{{item.prodImgUrl}}"
-												alt="Printed Dress" width="98" height="98" /></a></td>
-										<td class="cart_description">
-											<p class="product-name">
-												<a
-													href="#">{{item.prodName}}</a>
-											</p>
-										</td>
-										<td class="cart_avail"><span class="label label-success">In
-												stock</span></td>
-										<td class="cart_unit" data-title="Unit price">
-											<ul class="price text-right" id="product_price_3_13_0">
-												<li class="price">{{item.prodPrice  | currency}}</li>
-											</ul>
-										</td>
-
-										<td class="cart_quantity text-center"><input
-											type="hidden" value="1" name="quantity_3_13_0_0_hidden" /> <input
-											size="2" type="text" autocomplete="off"
-											class="cart_quantity_input form-control grey" ng-model="item.prodQuantity"
-
-											name="quantity_3_13_0_0" />
-											<div class="cart_quantity_button clearfix">
-												<a rel="nofollow" ng-click="subCartQuantity(item)"
-													class="cart_quantity_down btn btn-default button-minus"
-													id="cart_quantity_down_3_13_0_0"
-													href=""
-													title="Subtract"> <span><i class="icon-minus"></i></span>
-												</a> <a rel="nofollow" ng-click="addCartQuantity(item)"
-													class="cart_quantity_up btn btn-default button-plus"
-													id="cart_quantity_up_3_13_0_0"
-													href=""
-													title="Add"><span><i class="icon-plus"></i></span></a>
-											</div></td>
-										<td class="cart_delete text-center" data-title="Delete">
-											<div>
-												<a rel="nofollow" title="Delete" ng-click="removeCartItem($index)"
-													class="cart_quantity_delete" id="3_13_0_0"
-													href=""><i
-													class="icon-trash"></i></a>
-											</div>
-										</td>
-										<td class="cart_total" data-title="Total"><span
-											class="price" id="total_product_price_3_13_0"> {{item.prodPrice*item.prodQuantity | currency}}
-										</span></td>
-
-									</tr>
-
-
-								</tbody>
-							</table>
-						</div>
-						<!-- end order-detail-content -->
-
-
-
-
-
-						<div id="HOOK_SHOPPING_CART"></div>
-						<p class="cart_navigation clearfix">
-							<a href="#/login" ng-show="cart.items.length>0"
-								class="button btn btn-default standard-checkout button-medium"
-								title="Proceed to checkout"> <span>Proceed to
-									checkout<i class="icon-chevron-right right"></i>
-							</span>
-							</a> <a href="#" class="button-exclusive btn btn-default"
-								title="Continue shopping"> <i class="icon-chevron-left"></i>Continue
-								shopping
-							</a>
-						</p>
-
-					</div>
-					<!-- #center_column -->
-				</div>
-				<!-- .row -->
-			</div>
-			<!-- #columns -->
+		<!-- Breadcrumb -->
+		<div class="breadcrumb clearfix">
+			<a class="home" href="#" title="Return to Home"><i
+				class="icon-home"></i></a> <span class="navigation-pipe">&gt;</span>
+			Your shopping cart
 		</div>
-	
+		<!-- /Breadcrumb -->
+
+		<div id="slider_row" class="row">
+			<div id="top_column" class="center_column col-xs-12 col-sm-12"></div>
+		</div>
+		<div class="row">
+			<div id="center_column" class="center_column col-xs-12 col-sm-12">
+
+
+				<h1 id="cart_title" class="page-heading">
+					Shopping-cart summary <span class="heading-counter">Your
+						shopping cart contains: <span id="summary_products_quantity">{{cart.getTotalCount()}}</span>
+					</span>
+				</h1>
+
+
+
+
+				<!-- Steps -->
+				<ul class="step clearfix" id="order_step">
+					<li class="step_current  first"><span><em>01.</em>
+							Summary</span></li>
+					<li class="step_todo second"><span><em>02.</em> Sign in</span></li>
+					<li class="step_todo third"><span><em>03.</em> Address</span></li>
+					<li class="step_todo four"><span><em>04.</em> Shipping</span></li>
+					<li id="step_end" class="step_todo last"><span><em>05.</em>
+							Payment</span></li>
+				</ul>
+				<!-- /Steps -->
+
+
+
+
+				<p id="emptyCartWarning" ng-show="cart.items.length==0"
+					class="alert alert-warning ">Your shopping cart is empty.</p>
+				<div class="cart_last_product">
+					<div class="cart_last_product_header">
+						<div class="left">Last product added</div>
+					</div>
+					<a class="cart_last_product_img"
+						href="http://fo.demo.prestashop.com/en/casual-dresses/3-printed-dress.html">
+						<img
+						src="http://fo.demo.prestashop.com/8-small_default/printed-dress.jpg"
+						alt="Printed Dress" />
+					</a>
+					<div class="cart_last_product_content">
+						<p class="product-name">
+							<a
+								href="http://fo.demo.prestashop.com/en/casual-dresses/3-printed-dress.html#/size-s/color-orange">
+								Printed Dress </a>
+						</p>
+						<small> <a
+							href="http://fo.demo.prestashop.com/en/casual-dresses/3-printed-dress.html#/size-s/color-orange">
+								Size : S, Color : Orange </a>
+						</small>
+					</div>
+				</div>
+
+
+				<div id="order-detail-content" ng-show="cart.items.length>0"
+					class="table_block table-responsive">
+					<table id="cart_summary"
+						class="table table-bordered stock-management-on">
+						<thead>
+							<tr>
+								<th class="cart_product first_item">Product</th>
+								<th class="cart_description item">Product Name</th>
+								<th class="cart_avail item text-center">Availability</th>
+								<th class="cart_unit item text-right">Unit price</th>
+								<th class="cart_quantity item text-center">Qty</th>
+								<th class="cart_delete last_item">&nbsp;</th>
+								<th class="cart_total item text-right">Total</th>
+							</tr>
+						</thead>
+						<tfoot>
+
+							<script src="scripts/logic/end_user/agileShoppingCart.js"></script>
+
+
+							<tr class="cart_total_price">
+								<td rowspan="4" colspan="3" id="cart_voucher"
+									class="cart_voucher"></td>
+								<td colspan="3" class="text-right">Total products</td>
+								<td colspan="2" class="price" id="total_product">{{cart.getTotalPrice()
+									| currency}}</td>
+							</tr>
+							<tr class="cart_total_delivery">
+								<td colspan="3" class="text-right">Total shipping</td>
+								<td colspan="2" class="price" id="total_shipping">$7.00</td>
+							</tr>
+							<tr class="cart_total_price">
+								<td colspan="3" class="total_price_container text-right"><span>Total</span>
+								</td>
+								<td colspan="2" class="price" id="total_price_container"><span
+									id="total_price">{{cart.getTotalPrice()+ 7 | currency}}</span>
+								</td>
+							</tr>
+						</tfoot>
+						<tbody>
+
+							<tr id="product_3_13_0_0"
+								ng-repeat="item in cart.items | orderBy:'prodName'"
+								class="cart_item last_item first_item address_0 odd">
+								<td class="cart_product"><a href="#"><img
+										src="{{item.prodImgUrl}}" alt="Printed Dress" width="98"
+										height="98" /></a></td>
+								<td class="cart_description">
+									<p class="product-name">
+										<a href="#">{{item.prodName}}</a>
+									</p>
+								</td>
+								<td class="cart_avail"><span class="label label-success">In
+										stock</span></td>
+								<td class="cart_unit" data-title="Unit price">
+									<ul class="price text-right" id="product_price_3_13_0">
+										<li class="price">{{item.prodPrice | currency}}</li>
+									</ul>
+								</td>
+
+								<td class="cart_quantity text-center"><input type="hidden"
+									value="1" name="quantity_3_13_0_0_hidden" /> <input size="2"
+									type="text" autocomplete="off"
+									class="cart_quantity_input form-control grey"
+									ng-model="item.prodQuantity" name="quantity_3_13_0_0" />
+									<div class="cart_quantity_button clearfix">
+										<a rel="nofollow" ng-click="subCartQuantity(item)"
+											class="cart_quantity_down btn btn-default button-minus"
+											id="cart_quantity_down_3_13_0_0" href="" title="Subtract">
+											<span><i class="icon-minus"></i></span>
+										</a> <a rel="nofollow" ng-click="addCartQuantity(item)"
+											class="cart_quantity_up btn btn-default button-plus"
+											id="cart_quantity_up_3_13_0_0" href="" title="Add"><span><i
+												class="icon-plus"></i></span></a>
+									</div></td>
+								<td class="cart_delete text-center" data-title="Delete">
+									<div>
+										<a rel="nofollow" title="Delete"
+											ng-click="removeCartItem($index)"
+											class="cart_quantity_delete" id="3_13_0_0" href=""><i
+											class="icon-trash"></i></a>
+									</div>
+								</td>
+								<td class="cart_total" data-title="Total"><span
+									class="price" id="total_product_price_3_13_0">
+										{{item.prodPrice*item.prodQuantity | currency}} </span></td>
+
+							</tr>
+
+
+						</tbody>
+					</table>
+				</div>
+				<!-- end order-detail-content -->
+
+
+
+
+
+				<div id="HOOK_SHOPPING_CART"></div>
+				<p class="cart_navigation clearfix">
+					<a href="#/login" ng-show="cart.items.length>0"
+						class="button btn btn-default standard-checkout button-medium"
+						title="Proceed to checkout"> <span>Proceed to checkout<i
+							class="icon-chevron-right right"></i>
+					</span>
+					</a> <a href="#" class="button-exclusive btn btn-default"
+						title="Continue shopping"> <i class="icon-chevron-left"></i>Continue
+						shopping
+					</a>
+				</p>
+
+			</div>
+			<!-- #center_column -->
+		</div>
+		<!-- .row -->
+	</div>
+	<!-- #columns -->
+</div>

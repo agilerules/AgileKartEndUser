@@ -42,24 +42,37 @@ angular.module('enduser').controller('productCtrl',function($scope,$http,$routeP
 	 $scope.productOptionsRest=AkProductOptionsResource.queryAll();
 	 $scope.productRest.$promise.then(function(dataProduct){
 		 $scope.productOptionsRest.$promise.then(function(dataProductOptions){
-			 console.log("dataProductOptions"+dataProductOptions);
+			 //console.log("dataProductOptions"+dataProductOptions); //48
+			 //console.log("$routeParams.productId"+$routeParams.productId); //6
+			 //console.log("dataProduct"+dataProduct.length) //15
 			 var postObject = new Object();
+			  //Loop on Product table
 				for(var i=0;i<dataProduct.length;i++){
+					//Check for the incoming Product Id match and fetch the respective Category Id
 					if(dataProduct[i].productId==$routeParams.productId){
 						postObject.categoryId = dataProduct[i].akProductCategories.categoryId;
 					}
 						
 				}
+				//Loop on Product Options table
 				for(var j=0;j<dataProductOptions.length;j++){
+					//Check for the incoming Product Id and fetch the respective Option Id and Option Group Id
 					if(dataProductOptions[j].akProducts.productId==$routeParams.productId){
-						console.log("dataProductOptions[j].akProducts.productId"+dataProductOptions[j].akProducts.productId);
-						postObject.optionId=dataProductOptions[j].akOptions.optionId;
-						postObject.optionGroupId=dataProductOptions[j].akOptionGroups.optionGroupId;
+
+						if(dataProductOptions[j].akOptionGroups.optionGroupId=='3') {
+							console.log("Check for option group 3");
+							postObject.optionId=dataProductOptions[j].akOptions.optionId;
+							postObject.optionGroupId=dataProductOptions[j].akOptionGroups.optionGroupId;
+						}
 					}
 				}
-				console.log("CategoryId  "+postObject.categoryId);
-				console.log("ProductOptionId "+postObject.optionId);
-				 console.log("OptionGroupId "+postObject.optionGroupId);
+				//Input to the BRMS Cross sell REST service
+				console.log("Input CategoryId: "+postObject.categoryId);
+				console.log("Input OptionGroupId: "+postObject.optionGroupId);
+				console.log("Input OptionId:  "+postObject.optionId); 
+				 
+				
+				//Invoke the BRMS Cross sell & Up sell REST service
 				 $http.post("/AgileKartService/agilekart", postObject).success(function(brms){
 					 console.log("HI");
 					   $scope.bramscategory=brms.crosellProduct.categoryId;
@@ -67,9 +80,11 @@ angular.module('enduser').controller('productCtrl',function($scope,$http,$routeP
 					   $scope.bramsgroupid=brms.crosellProduct.optionGroupId;
 					   $scope.bramsupgroupid1=brms.upsellProduct.optionGroupId1;
 					   $scope.bramsupgroupid2=brms.upsellProduct.optionGroupId2;
-					   console.log("categoryId "+brms.crosellProduct.categoryId);
-					   console.log("optionId "+brms.crosellProduct.optionId);
-					   console.log("OptionGroupId "+brms.crosellProduct.optionGroupId);
+					   console.log("Output CategoryId: "+brms.crosellProduct.categoryId);
+					   console.log("Output OptionGroupId: "+brms.crosellProduct.optionGroupId);
+					   console.log("Upsell Option Group Id1: "+brms.upsellProduct.optionGroupId1);
+					   console.log("Output optionGroupId2: "+brms.upsellProduct.optionGroupId2);
+					   console.log("Output OptionId: "+brms.upsellProduct.optionGroupId2);
 					   products=[];
 					   for(var i=0;i<dataProductOptions.length;i++){
 						   if(brms.crosellProduct.optionId==dataProductOptions[i].akOptions.optionId
@@ -84,13 +99,25 @@ angular.module('enduser').controller('productCtrl',function($scope,$http,$routeP
 						   console.log(products[i].productCartDesc);
 					   }
 					   productUp=[];
+					   console.log("dataProductOptions.length="+dataProductOptions.length);
+					   console.log("dataProductOptions[i].akOptionGroups.optionGroupId="+dataProductOptions[i].akOptionGroups.optionGroupId);
+					   console.log("brms.upsellProduct.optionGroupId1="+brms.upsellProduct.optionGroupId1);
 					   for(var i=0;i<dataProductOptions.length;i++){
-						   if(dataProductOptions[i].akOptionGroups.optionGroupId==brms.upsellProduct.optionGroupId1
-								   ||dataProductOptions[i].akOptionGroups.optionGroupId.categoryId==brms.upsellProduct.optionGroupId2){
+						   console.log("dataProductOptions[i].akOptionGroups.optionGroupId="+dataProductOptions[i].akOptionGroups.optionGroupId);
+						   console.log("brms.upsellProduct.optionGroupId1="+brms.upsellProduct.optionGroupId1);
+						   if(dataProductOptions[i].akOptionGroups.optionGroupId==brms.upsellProduct.optionGroupId1 && dataProductOptions[i].akProducts.akProductCategories.categoryId == postObject.categoryId){
+							   
+							   
+								   //if( brms.upsellProduct.optionGroupId2 != null) {
+								   	//	for (j=0;(j<dataProductOptions.length && j!=i);j++){
+							   				if (dataProductOptions[i].akOptions.optionId ==postObject.optionId && dataProductOptions[i].akProducts.productId!= $routeParams.productId){
+							   					productUp.push(dataProductOptions[i].akProducts);
+							   				}
+								   		//}
+								   }
 								   
-								   productUp.push(dataProductOptions[i].akProducts);
 					   }
-					   }
+					   
 					   function remove_duplicates(objectsArray) {
 						    var usedObjects = {};
 
@@ -116,7 +143,7 @@ angular.module('enduser').controller('productCtrl',function($scope,$http,$routeP
 						    console.log("error");
 						  });
 		 });
-		 isLoading1 = false;
+	
 	 });
 	 
 	 
