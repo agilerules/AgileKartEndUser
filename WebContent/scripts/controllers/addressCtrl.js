@@ -16,12 +16,11 @@ angular.module('enduser').controller(
 					$scope.akUser = users;
 					addressData.setUser($scope.akUser);
 					$scope.userId = data.userId;
-					var userAddrs = AkAddressResourceByUser.listAll({
+					var userAddrs = AkAddressResourceByUser.getAll({
 						Id : $scope.userId
 					});
 					console.log("UserAddressResource");
 					userAddrs.$promise.then(function(dataAdres) {
-						console.log("UserAddressResourcePromise");
 						for (var i = 0; i < dataAdres.length; i++) {
 							console.log(userAddrs[i].userAddress);
 							console.log(userAddrs[i].userTypeName);
@@ -30,8 +29,9 @@ angular.module('enduser').controller(
 									userAddrs[i]);
 							$scope.addressType.push(addressPair);
 							console.log($scope.addressType)
-							$scope.isLoading1 = false;
+					
 						}
+						$scope.isLoading1 = false;
 					});
 				});
 			};

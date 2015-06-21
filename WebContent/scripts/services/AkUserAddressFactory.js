@@ -3,6 +3,6 @@ angular.module('enduser').factory('AkUserAddressResource', function($resource){
     return resource;
 });
 angular.module('enduser').factory('AkAddressResourceByUser', function($resource){
-    var resource = $resource('http://localhost:8080/AgileKartRest/rest/akuseraddresses/user/:Id',{Id:'@Id'},{'listAll':{method:'GET',isArray:true}});
+    var resource = $resource('http://localhost:8080/AgileKartRest/rest/akuseraddresses/user/:Id',{Id:'@Id'},{'getAll':{method:'GET',isArray:true}});
     return resource;
 });
