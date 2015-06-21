@@ -151,7 +151,11 @@ var wishlistProductsIds = false;
 </script>
 
 
-
+<script type="text/javascript" src="js/jquery/jquery-1.11.0.min.js"></script>
+<script type="text/javascript"
+	src="js/jquery/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="js/jquery/plugins/jquery.easing.js"></script>
+<script type="text/javascript" src="js/tools.js"></script>
 <script type="text/javascript"
 	src="themes/default-bootstrap/js/global.js"></script>
 <script type="text/javascript"
@@ -415,7 +419,7 @@ var wishlistProductsIds = false;
 											title="{{blockValue.productCartDesc}}" itemprop="url">
 											{{blockValue.productCartDesc}}</a>
 									</h5>
-									<div class="button-container" stayle="display: none;">
+									<div class="button-container" style="display: none;">
 										<p id="availability_status" ng-switch
 											on="blockValue.productStock==0">
 											<a class="button ajax_add_to_cart_button btn btn-default"
