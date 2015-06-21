@@ -92,10 +92,10 @@
 					<form id="productsSortForm" action="" class="productsSortForm">
 						<div class="select selector1">
 							<label for="selectProductSort">Sort by</label> <select
-								ng-model="sortorder" id="selectProductSort"
+								ng-init= "sortorder = 'productPrice'" ng-model="sortorder" id="selectProductSort" 
 								class="selectProductSort form-control">
-								<option value="position:asc" selected="selected">--</option>
-								<option value="productPrice">Price: Lowest first</option>
+								<option value="position:asc" >--</option>
+								<option value="productPrice" selected="selected">Price: Lowest first</option>
 								<option value="-productPrice">Price: Highest first</option>
 								<option value="productName">Product Name: A to Z</option>
 								<option value="-productName">Product Name: Z to A</option>

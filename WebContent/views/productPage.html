@@ -82,7 +82,7 @@
 
 								<span class="label label-success" ng-switch-when='true'>In
 									stock</span> <span class="label label-success" ng-switch-when='false'
-										style="border: #d4323d; background-color: #f3515c">Out
+									style="border: #d4323d; background-color: #f3515c">Out
 									of stock</span>
 							</p>
 
@@ -164,7 +164,7 @@
 							<div class="box-info-product">
 								<div class="content_prices clearfix">
 									<!-- prices -->
-																	<div class="right-block">
+									<div class="right-block">
 
 										<button
 											ng-click="cart.addItem(product.productId,product.productName,product.productPrice,1,product.productThumb,product.productStock)"
@@ -192,7 +192,7 @@
 										<p id="add_to_cart" class="buttons_bottom_block no-print">
 											<button
 												ng-click="cart.addItem(product().productId,product().productName,product().productPrice,1,product().productThumb,product().productStock)"
-												class="exclusive">
+												class="exclusive"  ng-disabled="product().productStock==0">
 												<span>Add to cart</span>
 											</button>
 										</p>

@@ -78,6 +78,12 @@ agileKart.config(function($routeProvider) {
 		access : {
 			isFree : true
 		}
+	}).when('/summary/order/status/:orderId', {
+		controller : 'orderstatusCtrl',
+		templateUrl : 'views/orderSummary.html',
+		access : {
+			isFree : true
+		}
 	}).when('/contact',{
 		controller : 'contactCtrl',
 		templateUrl : 'views/contact.html',
